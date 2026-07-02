@@ -1,0 +1,4 @@
+Kurigram
+motor
+python-dotenv
+apscheduler

@@ -1,0 +1,33 @@
+{
+    "name": "Business Game Bot",
+    "description": "A Telegram Multiplayer International Business (Monopoly) Board Game Bot.",
+    "keywords": ["telegram", "bot", "business", "monopoly", "game"],
+    "repository": "https://github.com/yourusername/BusinessGameBot",
+    "env": {
+        "API_ID": {
+            "description": "Get this value from my.telegram.org",
+            "required": true
+        },
+        "API_HASH": {
+            "description": "Get this value from my.telegram.org",
+            "required": true
+        },
+        "BOT_TOKEN": {
+            "description": "Get this value from @BotFather",
+            "required": true
+        },
+        "MONGO_DB_URI": {
+            "description": "Your MongoDB connection URL",
+            "required": true
+        },
+        "OWNER_ID": {
+            "description": "Telegram User ID of the Bot Owner",
+            "required": true
+        }
+    },
+    "buildpacks": [
+        {
+            "url": "heroku/python"
+        }
+    ]
+}
