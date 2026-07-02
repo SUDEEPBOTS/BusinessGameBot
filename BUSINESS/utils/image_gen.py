@@ -9,7 +9,7 @@ def clean_text(text):
     return re.sub(r'[^\x00-\x7F]+', '', text).strip()
 
 def generate_roll_image(player_name, dice_val, space_name, price=None, rent=None, owner=None, event_text=None, balance=None):
-    width, height = 800, 450
+    width, height = 800, 520
     
     # Create background with gradient or solid color
     bg_color = (20, 25, 35)
@@ -21,10 +21,10 @@ def generate_roll_image(player_name, dice_val, space_name, price=None, rent=None
     font_path_reg = "BUSINESS/assets/fonts/regular.ttf"
     
     try:
-        title_font = ImageFont.truetype(font_path_bold, 50)
-        subtitle_font = ImageFont.truetype(font_path_bold, 40)
-        text_font = ImageFont.truetype(font_path_reg, 32)
-        small_font = ImageFont.truetype(font_path_bold, 28)
+        title_font = ImageFont.truetype(font_path_bold, 65)
+        subtitle_font = ImageFont.truetype(font_path_bold, 50)
+        text_font = ImageFont.truetype(font_path_reg, 40)
+        small_font = ImageFont.truetype(font_path_bold, 34)
     except:
         title_font = ImageFont.load_default()
         subtitle_font = ImageFont.load_default()
@@ -54,26 +54,26 @@ def generate_roll_image(player_name, dice_val, space_name, price=None, rent=None
     draw.line([(80, 110), (width-80, 110)], fill=(0, 255, 127), width=3)
     
     # Content
-    y_offset = 140
+    y_offset = 150
     space_clean = clean_text(space_name)
     draw.text((60, y_offset), f"Landed on: {space_clean}", font=subtitle_font, fill=(255, 215, 0))
-    y_offset += 65
+    y_offset += 75
     
     if price:
         draw.text((60, y_offset), f"Price: ${price}", font=text_font, fill=(255, 255, 255))
-        y_offset += 45
+        y_offset += 55
     if rent:
         draw.text((60, y_offset), f"Base Rent: ${rent}", font=text_font, fill=(255, 100, 100))
-        y_offset += 45
+        y_offset += 55
         
     if owner:
         draw.text((60, y_offset), f"Owner: {clean_text(owner)}", font=text_font, fill=(100, 255, 100))
-        y_offset += 45
+        y_offset += 55
         
     if event_text:
         # Wrap event text if needed
         draw.text((60, y_offset), clean_text(event_text), font=text_font, fill=(200, 220, 255))
-        y_offset += 45
+        y_offset += 55
         
     if balance is not None:
         balance_text = f"Balance: ${balance}"
