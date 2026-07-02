@@ -16,5 +16,8 @@ RENDER_EXTERNAL_URL = os.environ.get("RENDER_EXTERNAL_URL", "http://localhost:80
 # Logging
 LOGGER_ID = int(os.environ.get("LOGGER_ID", "-1001234567890"))
 
+# Sudo Users
+SUDOERS = [OWNER_ID]
+
 # Styling options
 START_IMG_URL = "https://m.media-amazon.com/images/I/61Z-o453tsL._AC_UF1000,1000_QL80_.jpg"
