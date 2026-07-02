@@ -1,135 +1,135 @@
 
 START_TEXT: |
-  > **Welcome to the International Business Game!** 🎲🏦
+  > **ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴛʜᴇ ɪɴᴛᴇʀɴᴀᴛɪᴏɴᴀʟ ʙᴜsɪɴᴇss ɢᴀᴍᴇ!** 🎲🏦
   >
-  > ||Buy properties in big countries, collect rent, and become a billionaire!||
-  > ||Start a game in your group and conquer the world.||
+  > ||ʙᴜʏ ᴘʀᴏᴘᴇʀᴛɪᴇs ɪɴ ʙɪɢ ᴄᴏᴜɴᴛʀɪᴇs, ᴄᴏʟʟᴇᴄᴛ ʀᴇɴᴛ, ᴀɴᴅ ʙᴇᴄᴏᴍᴇ ᴀ ʙɪʟʟɪᴏɴᴀɪʀᴇ!||
+  > ||sᴛᴀʀᴛ ᴀ ɢᴀᴍᴇ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴀɴᴅ ᴄᴏɴǫᴜᴇʀ ᴛʜᴇ ᴡᴏʀʟᴅ.||
   >
-  > Click below to explore commands or add me to your group.
+  > ᴄʟɪᴄᴋ ʙᴇʟᴏᴡ ᴛᴏ ᴇxᴘʟᴏʀᴇ ᴄᴏᴍᴍᴀɴᴅs ᴏʀ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ.
 
 HELP_MAIN: |
-  **𞋯𝆭 𝙷 𝙴 𝙻 𝙿  𝙼 𝙴 𝙽 𝚄  ˼𞋯𝆭📚**
-  
-  s ᴇ ʟ ᴇ ᴄ ᴛ  ᴀ  ᴍ ᴏ ᴅ ᴜ ʟ ᴇ  ʙ ᴇ ʟ ᴏ ᴡ  ᴛ ᴏ  ᴠ ɪ ᴇ ᴡ  ɪ ᴛ s  ᴄ ᴏ ᴍ ᴍ ᴀ ɴ ᴅ s.
+  > **𞋯𝆭 𝙷 𝙴 𝙻 𝙿  𝙼 𝙴 𝙽 𝚄  ˼𞋯𝆭📚**
+  >
+  > s ᴇ ʟ ᴇ ᴄ ᴛ  ᴀ  ᴍ ᴏ ᴅ ᴜ ʟ ᴇ  ʙ ᴇ ʟ ᴏ ᴡ  ᴛ ᴏ  ᴠ ɪ ᴇ ᴡ  ɪ ᴛ s  ᴄ ᴏ ᴍ ᴍ ᴀ ɴ ᴅ s.
 
 HELP_GAME: |
-  **Game Commands** 🎲
-  
-  /business - Start a new game lobby
-  /join - Join an active lobby
-  /start_game - Start the game (Admin only)
-  /roll - Roll the dice 🎲
-  /buy - Buy a property
-  /board - View your properties and balance
-  /sell - Sell property back to bank (half price)
-  /trade - Exchange property/money with players
+  > **ɢᴀᴍᴇ ᴄᴏᴍᴍᴀɴᴅs** 🎲
+  >
+  > /business - sᴛᴀʀᴛ ᴀ ɴᴇᴡ ɢᴀᴍᴇ ʟᴏʙʙʏ
+  > /join - ᴊᴏɪɴ ᴀɴ ᴀᴄᴛɪᴠᴇ ʟᴏʙʙʏ
+  > /start_game - sᴛᴀʀᴛ ᴛʜᴇ ɢᴀᴍᴇ (ᴀᴅᴍɪɴ ᴏɴʟʏ)
+  > /roll - ʀᴏʟʟ ᴛʜᴇ ᴅɪᴄᴇ 🎲
+  > /buy - ʙᴜʏ ᴀ ᴘʀᴏᴘᴇʀᴛʏ
+  > /board - ᴠɪᴇᴡ ʏᴏᴜʀ ᴘʀᴏᴘᴇʀᴛɪᴇs ᴀɴᴅ ʙᴀʟᴀɴᴄᴇ
+  > /sell - sᴇʟʟ ᴘʀᴏᴘᴇʀᴛʏ ʙᴀᴄᴋ ᴛᴏ ʙᴀɴᴋ (ʜᴀʟꜰ ᴘʀɪᴄᴇ)
+  > /trade - ᴇxᴄʜᴀɴɢᴇ ᴘʀᴏᴘᴇʀᴛʏ/money ᴡɪᴛʜ ᴘʟᴀʏᴇʀs
 
 HELP_PARTY: |
-  **Party Game Mode** 🎭
-  
-  /party - Start a Mario Party style game!
-  /partyjoin - Join the Party Game
-  /partystart - Start the game
-  *(Rolls are done in Bot DM by sending 1-9)*
+  > **ᴘᴀʀᴛʏ ɢᴀᴍᴇ ᴍᴏᴅᴇ** 🎭
+  >
+  > /party - sᴛᴀʀᴛ ᴀ ᴍᴀʀɪᴏ ᴘᴀʀᴛʏ sᴛʏʟᴇ ɢᴀᴍᴇ!
+  > /partyjoin - ᴊᴏɪɴ ᴛʜᴇ ᴘᴀʀᴛʏ ɢᴀᴍᴇ
+  > /partystart - sᴛᴀʀᴛ ᴛʜᴇ ɢᴀᴍᴇ
+  > *(ʀᴏʟʟs ᴀʀᴇ ᴅᴏɴᴇ ɪɴ ʙᴏᴛ ᴅᴍ ʙʏ sᴇɴᴅɪɴɢ 1-9)*
 
 HELP_ADMIN: |
-  **Admin Commands** 🛡️
-  
-  /ban [reply/id] - Ban a user from the group
-  /unban [reply/id] - Unban a user
-  /mute [reply/id] - Mute a user
-  /unmute [reply/id] - Unmute a user
-  /tmute [reply/id] [time] - Temporarily mute a user
+  > **ᴀᴅᴍɪɴ ᴄᴏᴍᴍᴀɴᴅs** 🛡️
+  >
+  > /ban [ʀᴇᴘʟʏ/id] - ʙᴀɴ ᴀ ᴜsᴇʀ ꜰʀᴏᴍ ᴛʜᴇ ɢʀᴏᴜᴘ
+  > /unban [ʀᴇᴘʟʏ/id] - ᴜɴʙᴀɴ ᴀ ᴜsᴇʀ
+  > /mute [ʀᴇᴘʟʏ/id] - ᴍᴜᴛᴇ ᴀ ᴜsᴇʀ
+  > /unmute [ʀᴇᴘʟʏ/id] - ᴜɴᴍᴜᴛᴇ ᴀ ᴜsᴇʀ
+  > /tmute [ʀᴇᴘʟʏ/id] [ᴛɪᴍᴇ] - ᴛᴇᴍᴘᴏʀᴀʀɪʟʏ ᴍᴜᴛᴇ ᴀ ᴜsᴇʀ
 
 HELP_SUDO: |
-  **Sudo Commands** ⚙️
-  
-  /gban [reply/id] - Global ban a user across all groups
-  /ungban [reply/id] - Remove global ban
-  /addsudo [reply] - Add a sudo user
-  /rmsudo [reply] - Remove a sudo user
+  > **sᴜᴅᴏ ᴄᴏᴍᴍᴀɴᴅs** ⚙️
+  >
+  > /gban [ʀᴇᴘʟʏ/id] - ɢʟᴏʙᴀʟ ʙᴀɴ ᴀ ᴜsᴇʀ ᴀᴄʀᴏss ᴀʟʟ ɢʀᴏᴜᴘs
+  > /ungban [ʀᴇᴘʟʏ/id] - ʀᴇᴍᴏᴠᴇ ɢʟᴏʙᴀʟ ʙᴀɴ
+  > /addsudo [ʀᴇᴘʟʏ] - ᴀᴅᴅ ᴀ sᴜᴅᴏ ᴜsᴇʀ
+  > /rmsudo [ʀᴇᴘʟʏ] - ʀᴇᴍᴏᴠᴇ ᴀ sᴜᴅᴏ ᴜsᴇʀ
 
 HELP_TOOLS: |
-  **Tools Commands** 🛠️
-  
-  /ping - Check bot latency
-  /stats - Check server usage
+  > **ᴛᴏᴏʟs ᴄᴏᴍᴍᴀɴᴅs** 🛠️
+  >
+  > /ping - ᴄʜᴇᴄᴋ ʙᴏᴛ ʟᴀᴛᴇɴᴄʏ
+  > /stats - ᴄʜᴇᴄᴋ sᴇʀᴠᴇʀ ᴜsᴀɢᴇ
 
-INLINE_HELP_DESC: "Click here to see how to start playing the International Business Game!"
-INLINE_HELP_TITLE: "Business Game Bot Help"
+INLINE_HELP_DESC: "ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴇ ʜᴏᴡ ᴛᴏ sᴛᴀʀᴛ ᴘʟᴀʏɪɴɢ ᴛʜᴇ ɪɴᴛᴇʀɴᴀᴛɪᴏɴᴀʟ ʙᴜsɪɴᴇss ɢᴀᴍᴇ!"
+INLINE_HELP_TITLE: "ʙᴜsɪɴᴇss ɢᴀᴍᴇ ʙᴏᴛ ʜᴇʟᴘ"
 
-BTN_ADD_ME: "ADD ME"
-BTN_HELP: "HELP"
-BTN_ABOUT: "ABOUT"
-BTN_SUPPORT: "SUPPORT"
-BTN_BACK: "BACK"
-BTN_PLAY_NOW: "PLAY NOW"
-BTN_OWNER: "MY MASTER"
+BTN_ADD_ME: "ᴀᴅᴅ ᴍᴇ"
+BTN_HELP: "ʜᴇʟᴘ"
+BTN_ABOUT: "ᴀʙᴏᴜᴛ"
+BTN_SUPPORT: "sᴜᴘᴘᴏʀᴛ"
+BTN_BACK: "ʙᴀᴄᴋ"
+BTN_PLAY_NOW: "ᴘʟᴀʏ ɴᴏᴡ"
+BTN_OWNER: "ᴍʏ ᴍᴀsᴛᴇʀ"
 
-LOBBY_ACTIVE: "A game or lobby is already active in this group! Use /join to join."
-LOBBY_CREATED: "🎲 **New Business Game Lobby Created!** 🏦\n\n**Host:** {host}\n**Players ({count}/6):**\n{players}\n\nType /join to enter the game. Admin/Host can type /start_game when everyone is ready."
-NO_LOBBY: "There is no active lobby. Use /business to create one."
-GAME_ALREADY_STARTED: "The game has already started!"
-ALREADY_JOINED: "You have already joined this game!"
-PLAYER_JOINED: "{mention} joined the game! ({count}/6)"
-LOBBY_FULL: "The lobby is full! Maximum 6 players allowed."
-NOT_ENOUGH_PLAYERS: "You need at least 2 players to start the game."
-ONLY_HOST_STARTS: "Only the host who created the lobby can start the game."
-GAME_STARTED: "🚀 **THE GAME HAS STARTED!** 🚀\n\nEach player starts with **$5000**.\nIt's {turn_player}'s turn!\n\n**Players:**\n{players}\n\nType /roll to throw the dice! 🎲"
+LOBBY_ACTIVE: "ᴀ ɢᴀᴍᴇ ᴏʀ ʟᴏʙʙʏ ɪs ᴀʟʀᴇᴀᴅʏ ᴀᴄᴛɪᴠᴇ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ! ᴜsᴇ /join ᴛᴏ ᴊᴏɪɴ."
+LOBBY_CREATED: "🎲 **ɴᴇᴡ ʙᴜsɪɴᴇss ɢᴀᴍᴇ ʟᴏʙʙʏ ᴄʀᴇᴀᴛᴇᴅ!** 🏦\n\n**ʜᴏsᴛ:** {host}\n**ᴘʟᴀʏᴇʀs ({count}/6):**\n{players}\n\nᴛʏᴘᴇ /join ᴛᴏ ᴇɴᴛᴇʀ ᴛʜᴇ ɢᴀᴍᴇ. ᴀᴅᴍɪɴ/Host ᴄᴀɴ ᴛʏᴘᴇ /start_game ᴡʜᴇɴ ᴇᴠᴇʀʏᴏɴᴇ ɪs ʀᴇᴀᴅʏ."
+NO_LOBBY: "ᴛʜᴇʀᴇ ɪs ɴᴏ ᴀᴄᴛɪᴠᴇ ʟᴏʙʙʏ. ᴜsᴇ /business ᴛᴏ ᴄʀᴇᴀᴛᴇ ᴏɴᴇ."
+GAME_ALREADY_STARTED: "ᴛʜᴇ ɢᴀᴍᴇ ʜᴀs ᴀʟʀᴇᴀᴅʏ sᴛᴀʀᴛᴇᴅ!"
+ALREADY_JOINED: "ʏᴏᴜ ʜᴀᴠᴇ ᴀʟʀᴇᴀᴅʏ ᴊᴏɪɴᴇᴅ ᴛʜɪs ɢᴀᴍᴇ!"
+PLAYER_JOINED: "{mention} ᴊᴏɪɴᴇᴅ ᴛʜᴇ ɢᴀᴍᴇ! ({count}/6)"
+LOBBY_FULL: "ᴛʜᴇ ʟᴏʙʙʏ ɪs ꜰᴜʟʟ! ᴍᴀxɪᴍᴜᴍ 6 ᴘʟᴀʏᴇʀs ᴀʟʟᴏᴡᴇᴅ."
+NOT_ENOUGH_PLAYERS: "ʏᴏᴜ ɴᴇᴇᴅ ᴀᴛ ʟᴇᴀsᴛ 2 ᴘʟᴀʏᴇʀs ᴛᴏ sᴛᴀʀᴛ ᴛʜᴇ ɢᴀᴍᴇ."
+ONLY_HOST_STARTS: "ᴏɴʟʏ ᴛʜᴇ ʜᴏsᴛ ᴡʜᴏ ᴄʀᴇᴀᴛᴇᴅ ᴛʜᴇ ʟᴏʙʙʏ ᴄᴀɴ sᴛᴀʀᴛ ᴛʜᴇ ɢᴀᴍᴇ."
+GAME_STARTED: "🚀 **ᴛʜᴇ ɢᴀᴍᴇ ʜᴀs sᴛᴀʀᴛᴇᴅ!** 🚀\n\nᴇᴀᴄʜ ᴘʟᴀʏᴇʀ sᴛᴀʀᴛs ᴡɪᴛʜ **$5000**.\nɪᴛ's {turn_player}'s ᴛᴜʀɴ!\n\n**ᴘʟᴀʏᴇʀs:**\n{players}\n\nᴛʏᴘᴇ /roll ᴛᴏ ᴛʜʀᴏᴡ ᴛʜᴇ ᴅɪᴄᴇ! 🎲"
 
-NO_ACTIVE_GAME: "No active game. Start one with /business"
-GAME_NOT_STARTED: "The game hasn't started yet! Use /start_game."
-NOT_YOUR_TURN: "It's not your turn! Waiting for {name}."
-JAIL_FREE: "🚓 **{name}** served their sentence and is free from Jail!\n\nNext turn: **{next_player}**"
-JAIL_SKIP: "🚓 **{name}** is in Jail (Turn {turns}/3). Skipping turn!\n\nNext turn: **{next_player}**"
-ROLL_MSG: "🎲 **{name} rolled a {dice}!**\n\nLanded on: **{space_name}**\n"
-PASSED_START: "💰 *Passed Start! Collected $2000!*\n"
-PROP_OWNED_SELF_MAX: "🏨 You own this property. It is fully upgraded to a Hotel!"
-PROP_OWNED_SELF_UPG: "🏠 You own this property (Level {level}).\nUpgrade cost: ${cost}"
-BANKRUPT_MSG: "⚠️ {name} went bankrupt!\n"
-RENT_PAID: "🏠 Owned by {owner} (Level {level})!\n💸 **Paid ${rent} in rent!**"
-PROP_UNOWNED: "💵 Price: ${price}\n💸 Base Rent: ${rent}"
-TAX_PAID: "💸 Paid ${amount} in taxes."
-CHANCE_CARD_MSG: "🃏 **CHANCE CARD:**\n*{text}*\n"
-GO_TO_JAIL: "🚓 **GO TO JAIL!** You are arrested."
-NEXT_TURN: "\n\nNext turn: **{next_player}**"
-BOARD_TITLE: "🏦 **Game Status:**\n\n"
-BOARD_PLAYER_STAT: "👤 **{name}**\n💵 Balance: ${balance}\n📍 Position: {pos_name}\n\n"
+NO_ACTIVE_GAME: "ɴᴏ ᴀᴄᴛɪᴠᴇ ɢᴀᴍᴇ. sᴛᴀʀᴛ ᴏɴᴇ ᴡɪᴛʜ /business"
+GAME_NOT_STARTED: "ᴛʜᴇ ɢᴀᴍᴇ ʜᴀsɴ'ᴛ sᴛᴀʀᴛᴇᴅ ʏᴇᴛ! ᴜsᴇ /start_game."
+NOT_YOUR_TURN: "ɪᴛ's ɴᴏᴛ ʏᴏᴜʀ ᴛᴜʀɴ! ᴡᴀɪᴛɪɴɢ ꜰᴏʀ {name}."
+JAIL_FREE: "🚓 **{name}** sᴇʀᴠᴇᴅ ᴛʜᴇɪʀ sᴇɴᴛᴇɴᴄᴇ ᴀɴᴅ ɪs ꜰʀᴇᴇ ꜰʀᴏᴍ ᴊᴀɪʟ!\n\nɴᴇxᴛ ᴛᴜʀɴ: **{next_player}**"
+JAIL_SKIP: "🚓 **{name}** ɪs ɪɴ ᴊᴀɪʟ (ᴛᴜʀɴ {turns}/3). sᴋɪᴘᴘɪɴɢ ᴛᴜʀɴ!\n\nɴᴇxᴛ ᴛᴜʀɴ: **{next_player}**"
+ROLL_MSG: "🎲 **{name} ʀᴏʟʟᴇᴅ ᴀ {dice}!**\n\nʟᴀɴᴅᴇᴅ ᴏɴ: **{space_name}**\n"
+PASSED_START: "💰 *ᴘᴀssᴇᴅ sᴛᴀʀᴛ! ᴄᴏʟʟᴇᴄᴛᴇᴅ $2000!*\n"
+PROP_OWNED_SELF_MAX: "🏨 ʏᴏᴜ ᴏᴡɴ ᴛʜɪs ᴘʀᴏᴘᴇʀᴛʏ. ɪᴛ ɪs ꜰᴜʟʟʏ ᴜᴘɢʀᴀᴅᴇᴅ ᴛᴏ ᴀ ʜᴏᴛᴇʟ!"
+PROP_OWNED_SELF_UPG: "🏠 ʏᴏᴜ ᴏᴡɴ ᴛʜɪs ᴘʀᴏᴘᴇʀᴛʏ (ʟᴇᴠᴇʟ {level}).\nᴜᴘɢʀᴀᴅᴇ ᴄᴏsᴛ: ${cost}"
+BANKRUPT_MSG: "⚠️ {name} ᴡᴇɴᴛ ʙᴀɴᴋʀᴜᴘᴛ!\n"
+RENT_PAID: "🏠 ᴏᴡɴᴇᴅ ʙʏ {owner} (ʟᴇᴠᴇʟ {level})!\n💸 **ᴘᴀɪᴅ ${rent} ɪɴ ʀᴇɴᴛ!**"
+PROP_UNOWNED: "💵 ᴘʀɪᴄᴇ: ${price}\n💸 ʙᴀsᴇ ʀᴇɴᴛ: ${rent}"
+TAX_PAID: "💸 ᴘᴀɪᴅ ${amount} ɪɴ ᴛᴀxᴇs."
+CHANCE_CARD_MSG: "🃏 **ᴄʜᴀɴᴄᴇ ᴄᴀʀᴅ:**\n*{text}*\n"
+GO_TO_JAIL: "🚓 **ɢᴏ ᴛᴏ ᴊᴀɪʟ!** ʏᴏᴜ ᴀʀᴇ ᴀʀʀᴇsᴛᴇᴅ."
+NEXT_TURN: "\n\nɴᴇxᴛ ᴛᴜʀɴ: **{next_player}**"
+BOARD_TITLE: "🏦 **ɢᴀᴍᴇ sᴛᴀᴛᴜs:**\n\n"
+BOARD_PLAYER_STAT: "👤 **{name}**\n💵 ʙᴀʟᴀɴᴄᴇ: ${balance}\n📍 ᴘᴏsɪᴛɪᴏɴ: {pos_name}\n\n"
 
-NOT_IN_GAME: "You are not in this game!"
-NOT_ON_PROPERTY: "You are not on this property!"
-ALREADY_OWNED: "This property is already owned!"
-NOT_ENOUGH_MONEY: "You don't have enough money!"
-BOUGHT_PROPERTY: "Successfully bought {name}!"
-BUY_SUCCESS_MSG: "✅ **{name} bought {prop_name} for ${price}!**"
-DONT_OWN_PROP: "You don't own this property!"
-MAX_LEVEL_REACHED: "Already at max level (Hotel)!"
-NOT_ENOUGH_MONEY_UPG: "You don't have enough money to upgrade!"
-UPG_SUCCESS_MSG: "✅ **{name} upgraded {prop_name} to Level {level} ({type}) for ${cost}!**"
-UPGRADED_PROPERTY: "Successfully upgraded to Level {level}!"
-BTN_JOIN_LOBBY: "JOIN LOBBY"
-BTN_BUY_PROPERTY: "BUY PROPERTY"
-BTN_UPGRADE_PROPERTY: "UPGRADE PROPERTY"
+NOT_IN_GAME: "ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ɪɴ ᴛʜɪs ɢᴀᴍᴇ!"
+NOT_ON_PROPERTY: "ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴏɴ ᴛʜɪs ᴘʀᴏᴘᴇʀᴛʏ!"
+ALREADY_OWNED: "ᴛʜɪs ᴘʀᴏᴘᴇʀᴛʏ ɪs ᴀʟʀᴇᴀᴅʏ ᴏᴡɴᴇᴅ!"
+NOT_ENOUGH_MONEY: "ʏᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴇɴᴏᴜɢʜ ᴍᴏɴᴇʏ!"
+BOUGHT_PROPERTY: "sᴜᴄᴄᴇssꜰᴜʟʟʏ ʙᴏᴜɢʜᴛ {name}!"
+BUY_SUCCESS_MSG: "✅ **{name} ʙᴏᴜɢʜᴛ {prop_name} ꜰᴏʀ ${price}!**"
+DONT_OWN_PROP: "ʏᴏᴜ ᴅᴏɴ'ᴛ ᴏᴡɴ ᴛʜɪs ᴘʀᴏᴘᴇʀᴛʏ!"
+MAX_LEVEL_REACHED: "ᴀʟʀᴇᴀᴅʏ ᴀᴛ ᴍᴀx ʟᴇᴠᴇʟ (ʜᴏᴛᴇʟ)!"
+NOT_ENOUGH_MONEY_UPG: "ʏᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴇɴᴏᴜɢʜ ᴍᴏɴᴇʏ ᴛᴏ ᴜᴘɢʀᴀᴅᴇ!"
+UPG_SUCCESS_MSG: "✅ **{name} ᴜᴘɢʀᴀᴅᴇᴅ {prop_name} ᴛᴏ ʟᴇᴠᴇʟ {level} ({type}) ꜰᴏʀ ${cost}!**"
+UPGRADED_PROPERTY: "sᴜᴄᴄᴇssꜰᴜʟʟʏ ᴜᴘɢʀᴀᴅᴇᴅ ᴛᴏ ʟᴇᴠᴇʟ {level}!"
+BTN_JOIN_LOBBY: "ᴊᴏɪɴ ʟᴏʙʙʏ"
+BTN_BUY_PROPERTY: "ʙᴜʏ ᴘʀᴏᴘᴇʀᴛʏ"
+BTN_UPGRADE_PROPERTY: "ᴜᴘɢʀᴀᴅᴇ ᴘʀᴏᴘᴇʀᴛʏ"
 
 PROFILE_MSG: |
-  👤 **Business Profile: {name}**
-  
-  🎮 Games Played: `{played}`
-  🏆 Games Won: `{won}`
-  💰 Total Wealth Earned: `${wealth}`
-  📉 Bankruptcies: `{bankruptcies}`
+  > 👤 **ʙᴜsɪɴᴇss ᴘʀᴏꜰɪʟᴇ: {name}**
+  >
+  > 🎮 ɢᴀᴍᴇs ᴘʟᴀʏᴇᴅ: `{played}`
+  > 🏆 ɢᴀᴍᴇs ᴡᴏɴ: `{won}`
+  > 💰 ᴛᴏᴛᴀʟ ᴡᴇᴀʟᴛʜ ᴇᴀʀɴᴇᴅ: `${wealth}`
+  > 📉 ʙᴀɴᴋʀᴜᴘᴛᴄɪᴇs: `{bankruptcies}`
 
-LEADERBOARD_TITLE: "🏆 **Global Business Leaderboard (Top 10)** 🏆\n\n"
-LEADERBOARD_ENTRY: "{rank}. **{name}** - 🏆 {won} Wins (${wealth})\n"
-NO_DATA: "No data available yet."
+LEADERBOARD_TITLE: "🏆 **ɢʟᴏʙᴀʟ ʙᴜsɪɴᴇss ʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ (ᴛᴏᴘ 10)** 🏆\n\n"
+LEADERBOARD_ENTRY: "{rank}. **{name}** - 🏆 {won} ᴡɪɴs (${wealth})\n"
+NO_DATA: "ɴᴏ ᴅᴀᴛᴀ ᴀᴠᴀɪʟᴀʙʟᴇ ʏᴇᴛ."
 
-PLAYER_BANKRUPT: "💥 **BANKRUPTCY!** 💥\n{name} has gone bankrupt and is eliminated from the game! All their properties have been returned to the bank."
-GAME_OVER: "🎉 **GAME OVER!** 🎉\n\nAll other players went bankrupt!\n🏆 **Winner:** {winner}\n💰 **Final Wealth:** ${wealth}\n\nStats have been updated globally. Use /business to start a new game!"
-AFK_WARNING: "⚠️ **{name}**, you have 60 seconds to /roll or you will be skipped!"
-AFK_SKIPPED: "💤 **{name} was AFK and their turn has been skipped!**\n\nNext turn: **{next_player}**"
+PLAYER_BANKRUPT: "💥 **ʙᴀɴᴋʀᴜᴘᴛᴄʏ!** 💥\n{name} ʜᴀs ɢᴏɴᴇ ʙᴀɴᴋʀᴜᴘᴛ ᴀɴᴅ ɪs ᴇʟɪᴍɪɴᴀᴛᴇᴅ ꜰʀᴏᴍ ᴛʜᴇ ɢᴀᴍᴇ! ᴀʟʟ ᴛʜᴇɪʀ ᴘʀᴏᴘᴇʀᴛɪᴇs ʜᴀᴠᴇ ʙᴇᴇɴ ʀᴇᴛᴜʀɴᴇᴅ ᴛᴏ ᴛʜᴇ ʙᴀɴᴋ."
+GAME_OVER: "🎉 **ɢᴀᴍᴇ ᴏᴠᴇʀ!** 🎉\n\nᴀʟʟ ᴏᴛʜᴇʀ ᴘʟᴀʏᴇʀs ᴡᴇɴᴛ ʙᴀɴᴋʀᴜᴘᴛ!\n🏆 **ᴡɪɴɴᴇʀ:** {winner}\n💰 **ꜰɪɴᴀʟ ᴡᴇᴀʟᴛʜ:** ${wealth}\n\nsᴛᴀᴛs ʜᴀᴠᴇ ʙᴇᴇɴ ᴜᴘᴅᴀᴛᴇᴅ ɢʟᴏʙᴀʟʟʏ. ᴜsᴇ /business ᴛᴏ sᴛᴀʀᴛ ᴀ ɴᴇᴡ ɢᴀᴍᴇ!"
+AFK_WARNING: "⚠️ **{name}**, ʏᴏᴜ ʜᴀᴠᴇ 60 sᴇᴄᴏɴᴅs ᴛᴏ /roll ᴏʀ ʏᴏᴜ ᴡɪʟʟ ʙᴇ sᴋɪᴘᴘᴇᴅ!"
+AFK_SKIPPED: "💤 **{name} ᴡᴀs ᴀꜰᴋ ᴀɴᴅ ᴛʜᴇɪʀ ᴛᴜʀɴ ʜᴀs ʙᴇᴇɴ sᴋɪᴘᴘᴇᴅ!**\n\nɴᴇxᴛ ᴛᴜʀɴ: **{next_player}**"
 
-TRADE_PROPOSAL: "🤝 **TRADE OFFER**\n\n{sender} has offered a trade to {target}!\n**Offer:** {offer_text}\n\nPlease Accept or Decline."
-BTN_ACCEPT: "ACCEPT ✅"
-BTN_DECLINE: "DECLINE ❌"
-TRADE_ACCEPTED: "✅ **TRADE ACCEPTED!**\n{target} accepted the offer from {sender}!"
-TRADE_DECLINED: "❌ **TRADE DECLINED!**\n{target} declined the offer from {sender}."
+TRADE_PROPOSAL: "🤝 **ᴛʀᴀᴅᴇ ᴏꜰꜰᴇʀ**\n\n{sender} ʜᴀs ᴏꜰꜰᴇʀᴇᴅ ᴀ ᴛʀᴀᴅᴇ ᴛᴏ {target}!\n**ᴏꜰꜰᴇʀ:** {offer_text}\n\nᴘʟᴇᴀsᴇ ᴀᴄᴄᴇᴘᴛ ᴏʀ ᴅᴇᴄʟɪɴᴇ."
+BTN_ACCEPT: "ᴀᴄᴄᴇᴘᴛ ✅"
+BTN_DECLINE: "ᴅᴇᴄʟɪɴᴇ ❌"
+TRADE_ACCEPTED: "✅ **ᴛʀᴀᴅᴇ ᴀᴄᴄᴇᴘᴛᴇᴅ!**\n{target} ᴀᴄᴄᴇᴘᴛᴇᴅ ᴛʜᴇ ᴏꜰꜰᴇʀ ꜰʀᴏᴍ {sender}!"
+TRADE_DECLINED: "❌ **ᴛʀᴀᴅᴇ ᴅᴇᴄʟɪɴᴇᴅ!**\n{target} ᴅᴇᴄʟɪɴᴇᴅ ᴛʜᴇ ᴏꜰꜰᴇʀ ꜰʀᴏᴍ {sender}."
