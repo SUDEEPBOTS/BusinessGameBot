@@ -26,22 +26,32 @@ import config
 
 @app.on_message(filters.command("gban") & filters.user(config.SUDOERS))
 async def gban_command(client, message: Message):
+    try:
+        await message.delete()
+    except:
+        pass
+
     if not message.reply_to_message:
-        return await message.reply_text("Reply to a user to global ban them.")
+        return await app.send_message(message.chat.id, "Reply to a user to global ban them.")
     user_id = message.reply_to_message.from_user.id
     if user_id in config.SUDOERS:
-        return await message.reply_text("You cannot gban a sudo user.")
+        return await app.send_message(message.chat.id, "You cannot gban a sudo user.")
     if user_id in config.BANNED_USERS:
-        return await message.reply_text("This user is already globally banned.")
+        return await app.send_message(message.chat.id, "This user is already globally banned.")
     config.BANNED_USERS.append(user_id)
-    await message.reply_text(f"Globally banned {message.reply_to_message.from_user.mention} from using the bot!")
+    await app.send_message(message.chat.id, f"Globally banned {message.reply_to_message.from_user.mention} from using the bot!")
 
 @app.on_message(filters.command("ungban") & filters.user(config.SUDOERS))
 async def ungban_command(client, message: Message):
+    try:
+        await message.delete()
+    except:
+        pass
+
     if not message.reply_to_message:
-        return await message.reply_text("Reply to a user to remove global ban.")
+        return await app.send_message(message.chat.id, "Reply to a user to remove global ban.")
     user_id = message.reply_to_message.from_user.id
     if user_id not in config.BANNED_USERS:
-        return await message.reply_text("This user is not globally banned.")
+        return await app.send_message(message.chat.id, "This user is not globally banned.")
     config.BANNED_USERS.remove(user_id)
-    await message.reply_text(f"Global ban removed for {message.reply_to_message.from_user.mention}.")
+    await app.send_message(message.chat.id, f"Global ban removed for {message.reply_to_message.from_user.mention}.")

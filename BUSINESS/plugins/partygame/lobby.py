@@ -12,9 +12,14 @@ from BUSINESS.utils.fonts import button_font
 
 @app.on_message(filters.command("party") & filters.group)
 async def party_create_lobby(client, message: Message):
+    try:
+        await message.delete()
+    except:
+        pass
+
     chat_id = message.chat.id
     if chat_id in ACTIVE_PARTY_GAMES:
-        return await message.reply_text("A Party Game is already active or waiting in this group! Use /partyjoin.")
+        return await app.send_message(message.chat.id, "A Party Game is already active or waiting in this group! Use /partyjoin.")
         
     game = PartyGameSession(chat_id)
     game.add_player(message.from_user.id, message.from_user.first_name)
@@ -23,26 +28,31 @@ async def party_create_lobby(client, message: Message):
     buttons = [[InlineKeyboardButton(text=button_font("JOIN PARTY"), callback_data="join_party_game")]]
     text = f"🎭 **New Party Game Lobby!** 🎲\n\nHost: {message.from_user.mention}\n\n**Players (1/5):**\n1. {message.from_user.first_name}\n\nClick the button or use `/partyjoin`."
     
-    await message.reply_text(text, reply_markup=InlineKeyboardMarkup(buttons))
+    await app.send_message(message.chat.id, text, reply_markup=InlineKeyboardMarkup(buttons))
 
 @app.on_message(filters.command("partyjoin") & filters.group)
 async def party_join_cmd(client, message: Message):
+    try:
+        await message.delete()
+    except:
+        pass
+
     chat_id = message.chat.id
     if chat_id not in ACTIVE_PARTY_GAMES:
-        return await message.reply_text("No active Party Game lobby.")
+        return await app.send_message(message.chat.id, "No active Party Game lobby.")
     
     game = ACTIVE_PARTY_GAMES[chat_id]
     if game.status != "waiting":
-        return await message.reply_text("The game has already started!")
+        return await app.send_message(message.chat.id, "The game has already started!")
         
     for p in game.players:
         if p.user_id == message.from_user.id:
-            return await message.reply_text("You are already in this game!")
+            return await app.send_message(message.chat.id, "You are already in this game!")
             
     if game.add_player(message.from_user.id, message.from_user.first_name):
-        await message.reply_text(f"✅ {message.from_user.mention} joined the Party Game! ({len(game.players)}/5)")
+        await app.send_message(message.chat.id, f"✅ {message.from_user.mention} joined the Party Game! ({len(game.players)}/5)")
     else:
-        await message.reply_text("Lobby is full! Maximum 5 players allowed.")
+        await app.send_message(message.chat.id, "Lobby is full! Maximum 5 players allowed.")
 
 @app.on_callback_query(filters.regex("^join_party_game$"))
 async def party_join_cb(client, callback_query):

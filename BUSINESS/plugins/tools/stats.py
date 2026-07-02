@@ -27,6 +27,11 @@ import config
 
 @app.on_message(filters.command("stats") & filters.user(config.SUDOERS))
 async def stats_command(client, message: Message):
+    try:
+        await message.delete()
+    except:
+        pass
+
     cpu_usage = psutil.cpu_percent(interval=1)
     ram = psutil.virtual_memory()
     ram_usage = ram.percent
@@ -39,4 +44,4 @@ async def stats_command(client, message: Message):
 
 *(More game stats will be added once database is connected)*
 """
-    await message.reply_text(stats_text)
+    await app.send_message(message.chat.id, stats_text)

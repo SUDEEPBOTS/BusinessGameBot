@@ -43,7 +43,7 @@ async def on_bot_added(client, message: Message):
 **Members:** {await app.get_chat_members_count(chat.id)}
 """
                 await app.send_message(config.LOGGER_ID, text=log_text)
-                await message.reply_text("Thanks for adding me! Type /business to start a game lobby. 🎲🏦")
+                await app.send_message(message.chat.id, "Thanks for adding me! Type /business to start a game lobby. 🎲🏦")
     except Exception as e:
         print(f"Error in on_bot_added: {e}")
 

@@ -27,8 +27,13 @@ from BUSINESS.utils.language import get_string
 
 @app.on_message(filters.command("profile"))
 async def profile_command(client, message: Message):
+    try:
+        await message.delete()
+    except:
+        pass
+
     if not db:
-        return await message.reply_text("Database is currently offline.")
+        return await app.send_message(message.chat.id, "Database is currently offline.")
     lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))
     target_user = message.from_user
     if message.reply_to_message and message.reply_to_message.from_user:
@@ -41,17 +46,22 @@ async def profile_command(client, message: Message):
         wealth=user_data.get("total_wealth_earned", 0),
         bankruptcies=user_data.get("bankruptcies", 0)
     )
-    await message.reply_text(text, quote=True)
+    await app.send_message(message.chat.id, text, quote=True)
 
 @app.on_message(filters.command(["top", "leaderboard"]))
 async def top_command(client, message: Message):
+    try:
+        await message.delete()
+    except:
+        pass
+
     if not db:
-        return await message.reply_text("Database is currently offline.")
+        return await app.send_message(message.chat.id, "Database is currently offline.")
     lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))
     cursor = db.users.find().sort("games_won", -1).limit(10)
     users = await cursor.to_list(length=10)
     if not users:
-        return await message.reply_text(get_string(lang, "NO_DATA"))
+        return await app.send_message(message.chat.id, get_string(lang, "NO_DATA"))
     text = get_string(lang, "LEADERBOARD_TITLE")
     for i, u in enumerate(users):
         name = u.get("name", "Unknown Player")
@@ -63,4 +73,4 @@ async def top_command(client, message: Message):
             won=won,
             wealth=wealth
         )
-    await message.reply_text(text, quote=True)
+    await app.send_message(message.chat.id, text, quote=True)

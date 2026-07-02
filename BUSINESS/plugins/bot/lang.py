@@ -26,14 +26,19 @@ from BUSINESS.database.db import db
 
 @app.on_message(filters.command("lang") & filters.group)
 async def lang_command(client, message: Message):
+    try:
+        await message.delete()
+    except:
+        pass
+
     member = await client.get_chat_member(message.chat.id, message.from_user.id)
     if member.status not in ["creator", "administrator"]:
-        return await message.reply_text("Only admins can change the group language!")
+        return await app.send_message(message.chat.id, "Only admins can change the group language!")
         
     buttons = [
         [InlineKeyboardButton("English 🇬🇧", callback_data="lang_en"), InlineKeyboardButton("Hindi 🇮🇳", callback_data="lang_hi")]
     ]
-    await message.reply_text("Please select the bot language for this group:", reply_markup=InlineKeyboardMarkup(buttons))
+    await app.send_message(message.chat.id, "Please select the bot language for this group:", reply_markup=InlineKeyboardMarkup(buttons))
 
 @app.on_callback_query(filters.regex("^lang_"))
 async def set_lang_callback(client, callback_query):

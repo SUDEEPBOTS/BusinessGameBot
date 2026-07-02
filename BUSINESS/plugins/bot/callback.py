@@ -29,7 +29,7 @@ from BUSINESS.utils.language import get_string
 import math
 
 MODULES = [
-    "GAME", "ADMIN", "SUDO", "TOOLS", "STATS", "TRADE"
+    "GAME", "PARTY", "ADMIN", "SUDO", "TOOLS", "STATS", "TRADE"
 ]
 
 def get_help_buttons(page: int, lang: str):
@@ -62,7 +62,7 @@ def get_help_buttons(page: int, lang: str):
 @app.on_callback_query(filters.regex(r"^help_menu$"))
 async def help_menu_main(client, callback_query: CallbackQuery):
     lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))
-buttons = get_help_buttons(0, lang)
+    buttons = get_help_buttons(0, lang)
     await callback_query.message.edit_caption(
         caption=get_string(lang, "HELP_MAIN"),
         reply_markup=InlineKeyboardMarkup(buttons)
@@ -71,7 +71,7 @@ buttons = get_help_buttons(0, lang)
 @app.on_callback_query(filters.regex(r"^help_page_(\d+)$"))
 async def help_menu_page(client, callback_query: CallbackQuery):
     lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))
-page = int(callback_query.matches[0].group(1))
+    page = int(callback_query.matches[0].group(1))
     buttons = get_help_buttons(page, lang)
     await callback_query.message.edit_caption(
         caption=get_string(lang, "HELP_MAIN"),
@@ -81,7 +81,7 @@ page = int(callback_query.matches[0].group(1))
 @app.on_callback_query(filters.regex(r"^help_([a-z]+)$"))
 async def help_module(client, callback_query: CallbackQuery):
     lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))
-module = callback_query.matches[0].group(1).upper()
+    module = callback_query.matches[0].group(1).upper()
     try:
         text = get_string(lang, f"HELP_{module}")
     except:
@@ -99,7 +99,7 @@ module = callback_query.matches[0].group(1).upper()
 @app.on_callback_query(filters.regex("start_menu"))
 async def start_callback(client, callback_query: CallbackQuery):
     lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))
-buttons = [
+    buttons = [
         [
             InlineKeyboardButton(text=button_font(get_string(lang, "BTN_ADD_ME")), url=f"https://t.me/{app.me.username}?startgroup=true"),
         ],
@@ -120,7 +120,7 @@ buttons = [
 @app.on_callback_query(filters.regex("about_menu"))
 async def about_callback(client, callback_query: CallbackQuery):
     lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))
-about_text = "> **Business Game Bot** 🏦\n>\n> A multiplayer board game bot built with Kurigram.\n> Play with your friends globally!"
+    about_text = "> **Business Game Bot** 🏦\n>\n> A multiplayer board game bot built with Kurigram.\n> Play with your friends globally!"
     buttons = [
         [
             InlineKeyboardButton(text=button_font(get_string(lang, "BTN_BACK")), callback_data="start_menu")

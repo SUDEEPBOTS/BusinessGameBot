@@ -47,6 +47,11 @@ async def handle_bankruptcy(chat_id, game, player, lang):
 
 @app.on_message(filters.command("roll") & filters.group)
 async def roll_command(client, message: Message):
+    try:
+        await message.delete()
+    except:
+        pass
+
     await message.delete()
     chat_id = message.chat.id
     lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))
@@ -162,6 +167,11 @@ async def roll_command(client, message: Message):
 
 @app.on_message(filters.command("board") & filters.group)
 async def board_command(client, message: Message):
+    try:
+        await message.delete()
+    except:
+        pass
+
     await message.delete()
     chat_id = message.chat.id
     lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))

@@ -29,15 +29,20 @@ TAG_ALL_PROCESSES = {}
 
 @app.on_message(filters.command(["tagall", "all"]) & filters.group)
 async def tag_all(client, message: Message):
+    try:
+        await message.delete()
+    except:
+        pass
+
     chat_id = message.chat.id
     
     # Ensure only admins can use tagall
     member = await client.get_chat_member(chat_id, message.from_user.id)
     if member.status not in ["creator", "administrator"]:
-        return await message.reply_text("Only admins can use the /tagall command.")
+        return await app.send_message(message.chat.id, "Only admins can use the /tagall command.")
         
     if chat_id in TAG_ALL_PROCESSES and TAG_ALL_PROCESSES[chat_id]:
-        return await message.reply_text("A tagall process is already running! Use /cancel to stop it.")
+        return await app.send_message(message.chat.id, "A tagall process is already running! Use /cancel to stop it.")
         
     TAG_ALL_PROCESSES[chat_id] = True
     
@@ -45,7 +50,7 @@ async def tag_all(client, message: Message):
     if len(message.command) > 1:
         text = message.text.split(None, 1)[1]
         
-    await message.reply_text("⏳ **Tagging all members...**\nUse /cancel to stop.")
+    await app.send_message(message.chat.id, "⏳ **Tagging all members...**\nUse /cancel to stop.")
     
     users = []
     try:
@@ -54,11 +59,11 @@ async def tag_all(client, message: Message):
                 users.append(f"[{member.user.first_name}](tg://user?id={member.user.id})")
     except Exception as e:
         TAG_ALL_PROCESSES[chat_id] = False
-        return await message.reply_text(f"Error fetching members: {e}")
+        return await app.send_message(message.chat.id, f"Error fetching members: {e}")
         
     if not users:
         TAG_ALL_PROCESSES[chat_id] = False
-        return await message.reply_text("No members found to tag.")
+        return await app.send_message(message.chat.id, "No members found to tag.")
         
     # Send mentions in batches of 5 to prevent giant spam blocks
     batch_size = 5
@@ -80,19 +85,24 @@ async def tag_all(client, message: Message):
             
     if TAG_ALL_PROCESSES.get(chat_id, False):
         TAG_ALL_PROCESSES[chat_id] = False
-        await message.reply_text("✅ **Tagging complete!**")
+        await app.send_message(message.chat.id, "✅ **Tagging complete!**")
 
 @app.on_message(filters.command(["cancel", "stop"]) & filters.group)
 async def cancel_tag_all(client, message: Message):
+    try:
+        await message.delete()
+    except:
+        pass
+
     chat_id = message.chat.id
     
     member = await client.get_chat_member(chat_id, message.from_user.id)
     if member.status not in ["creator", "administrator"]:
-        return await message.reply_text("Only admins can use the /cancel command.")
+        return await app.send_message(message.chat.id, "Only admins can use the /cancel command.")
         
     if chat_id in TAG_ALL_PROCESSES and TAG_ALL_PROCESSES[chat_id]:
         TAG_ALL_PROCESSES[chat_id] = False
-        await message.reply_text("🛑 **Tagall process cancelled!**")
+        await app.send_message(message.chat.id, "🛑 **Tagall process cancelled!**")
     else:
         # Check if they are trying to stop a game, because we have /stopgame
         # Just notify them if no tagall process is running

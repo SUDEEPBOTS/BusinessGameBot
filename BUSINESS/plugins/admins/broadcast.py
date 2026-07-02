@@ -29,11 +29,16 @@ from config import SUDOERS
 
 @app.on_message(filters.command(["broadcast", "bcast"]) & filters.user(SUDOERS))
 async def broadcast_command(client, message: Message):
+    try:
+        await message.delete()
+    except:
+        pass
+
     if not message.reply_to_message:
-        return await message.reply_text("Please reply to a message to broadcast it.")
+        return await app.send_message(message.chat.id, "Please reply to a message to broadcast it.")
     if not db:
-        return await message.reply_text("Database is currently offline.")
-    status = await message.reply_text("Starting broadcast...")
+        return await app.send_message(message.chat.id, "Database is currently offline.")
+    status = await app.send_message(message.chat.id, "Starting broadcast...")
     groups = await db.get_all_groups()
     if not groups:
         return await status.edit("No groups registered in database.")

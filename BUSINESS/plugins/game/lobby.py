@@ -29,6 +29,11 @@ from BUSINESS.database.db import db
 
 @app.on_message(filters.command("business") & filters.group)
 async def create_lobby(client, message: Message):
+    try:
+        await message.delete()
+    except:
+        pass
+
     await message.delete()
     chat_id = message.chat.id
     lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))
@@ -50,6 +55,11 @@ async def create_lobby(client, message: Message):
 
 @app.on_message(filters.command("join") & filters.group)
 async def join_command(client, message: Message):
+    try:
+        await message.delete()
+    except:
+        pass
+
     await message.delete()
     chat_id = message.chat.id
     lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))
@@ -74,6 +84,11 @@ import asyncio
 
 @app.on_message(filters.command("start_game") & filters.group)
 async def start_game_command(client, message: Message):
+    try:
+        await message.delete()
+    except:
+        pass
+
     await message.delete()
     chat_id = message.chat.id
     lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))
@@ -124,9 +139,14 @@ async def join_callback(client, callback_query):
 
 @app.on_message(filters.command(["stopgame", "cancelgame"]) & filters.group)
 async def stop_game_command(client, message: Message):
+    try:
+        await message.delete()
+    except:
+        pass
+
     chat_id = message.chat.id
     if chat_id not in ACTIVE_GAMES:
-        return await message.reply_text("No active game to stop.")
+        return await app.send_message(message.chat.id, "No active game to stop.")
         
     game = ACTIVE_GAMES[chat_id]
     
@@ -137,7 +157,7 @@ async def stop_game_command(client, message: Message):
     is_admin = member.status in ["creator", "administrator"]
     
     if not (is_host or is_admin):
-        return await message.reply_text("Only the game host or a group admin can stop the game.")
+        return await app.send_message(message.chat.id, "Only the game host or a group admin can stop the game.")
         
     del ACTIVE_GAMES[chat_id]
-    await message.reply_text("🛑 **The game has been manually stopped/cancelled.**")
+    await app.send_message(message.chat.id, "🛑 **The game has been manually stopped/cancelled.**")

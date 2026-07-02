@@ -30,11 +30,16 @@ from BUSINESS.utils.logger import play_logs
 
 @app.on_message(filters.command(["start", "help"]))
 async def start_command(client, message: Message):
+    try:
+        await message.delete()
+    except:
+        pass
+
     await play_logs(message, "start")
     
     if message.chat.id != message.from_user.id:
         button = [[InlineKeyboardButton(text="Click Here For Help Menu", url=f"https://t.me/{app.me.username}?start=help")]]
-        return await message.reply_text(
+        return await app.send_message(message.chat.id, 
             "Contact me in PM to view the help menu!",
             reply_markup=InlineKeyboardMarkup(button)
         )
@@ -53,7 +58,7 @@ async def start_command(client, message: Message):
             InlineKeyboardButton(text=button_font(get_string(lang, "BTN_OWNER")), url=f"tg://user?id={config.OWNER_ID}")
         ]
     ]
-    await message.reply_photo(
+    await app.send_photo(message.chat.id, 
         photo=config.START_IMG_URL,
         caption=get_string(lang, "START_TEXT"),
         reply_markup=InlineKeyboardMarkup(buttons)

@@ -11,29 +11,39 @@ import random
 
 @app.on_message(filters.command("partystart") & filters.group)
 async def party_start_cmd(client, message: Message):
+    try:
+        await message.delete()
+    except:
+        pass
+
     chat_id = message.chat.id
     if chat_id not in ACTIVE_PARTY_GAMES:
-        return await message.reply_text("No active Party Game lobby. Use /party first.")
+        return await app.send_message(message.chat.id, "No active Party Game lobby. Use /party first.")
         
     game = ACTIVE_PARTY_GAMES[chat_id]
     if game.status != "waiting":
-        return await message.reply_text("The game has already started!")
+        return await app.send_message(message.chat.id, "The game has already started!")
         
     if len(game.players) < 2:
-        return await message.reply_text("You need at least 2 players to start.")
+        return await app.send_message(message.chat.id, "You need at least 2 players to start.")
         
     if message.from_user.id != game.players[0].user_id:
-        return await message.reply_text("Only the host can start the game.")
+        return await app.send_message(message.chat.id, "Only the host can start the game.")
         
     game.status = "playing"
     game.turn_index = 0
     current_player = game.players[0]
     
     text = f"🎭 **PARTY GAME STARTED!** 🚀\n\nWelcome to the board! Everyone starts with $5000.\nTarget: Reach Box 30!\n\n**{current_player.name}**, it is your turn!\n👉 Go to my DM and send `/proll <1-9>` to move!"
-    await message.reply_text(text)
+    await app.send_message(message.chat.id, text)
 
 @app.on_message(filters.command(["proll", "partyroll"]))
 async def party_roll_cmd(client, message: Message):
+    try:
+        await message.delete()
+    except:
+        pass
+
     user_id = message.from_user.id
     chat_id = message.chat.id
     is_private = message.chat.id == message.from_user.id
@@ -66,11 +76,11 @@ async def party_roll_cmd(client, message: Message):
                     active_game = game
                     break
         if not active_game:
-            return await message.reply_text("It is not your turn in any active Party Game, or you are not in one.")
+            return await app.send_message(message.chat.id, "It is not your turn in any active Party Game, or you are not in one.")
             
     if len(message.command) < 2:
         error_msg = "Please provide a number from 1 to 9. Example: `/proll 5`"
-        if is_private: return await message.reply_text(error_msg)
+        if is_private: return await app.send_message(message.chat.id, error_msg)
         else: return await app.send_message(chat_id, f"{message.from_user.mention}, {error_msg}")
         
     try:
@@ -79,7 +89,7 @@ async def party_roll_cmd(client, message: Message):
             raise ValueError
     except ValueError:
         error_msg = "Please enter a valid number between 1 and 9."
-        if is_private: return await message.reply_text(error_msg)
+        if is_private: return await app.send_message(message.chat.id, error_msg)
         else: return await app.send_message(chat_id, f"{message.from_user.mention}, {error_msg}")
         
     current_player = active_game.players[active_game.turn_index]
@@ -119,4 +129,4 @@ async def party_roll_cmd(client, message: Message):
         
     await app.send_message(active_game.chat_id, group_msg)
     if is_private:
-        await message.reply_text(f"✅ Move sent to the group! You landed on Box {current_player.pos}.")
+        await app.send_message(message.chat.id, f"✅ Move sent to the group! You landed on Box {current_player.pos}.")
