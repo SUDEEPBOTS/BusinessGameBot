@@ -210,9 +210,12 @@ async def buy_property_callback(client, callback_query):
     buyer.balance -= price
     buyer.properties[pos] = 0
     success_msg = get_string(lang, "BUY_SUCCESS_MSG").format(name=buyer.name, prop_name=property_data['name'], price=price)
-    await callback_query.message.edit_text(
-        f"{callback_query.message.text.split('Next turn:')[0]}\n{success_msg}\n\nNext turn:{callback_query.message.text.split('Next turn:')[1]}"
-    )
+    try:
+        parts = callback_query.message.text.rsplit('\n\n', 1)
+        new_text = f"{parts[0]}\n{success_msg}\n\n{parts[1]}"
+    except Exception:
+        new_text = f"{callback_query.message.text}\n{success_msg}"
+    await callback_query.message.edit_text(new_text)
     await callback_query.answer(get_string(lang, "BOUGHT_PROPERTY").format(name=property_data['name']), show_alert=True)
 
 @app.on_callback_query(filters.regex(r"^upg_(\d+)$"))
@@ -244,7 +247,10 @@ async def upgrade_property_callback(client, callback_query):
     new_level = buyer.properties[pos]
     type_str = "House" if new_level < 5 else "Hotel"
     success_msg = get_string(lang, "UPG_SUCCESS_MSG").format(name=buyer.name, prop_name=property_data['name'], level=new_level, type=type_str, cost=upgrade_cost)
-    await callback_query.message.edit_text(
-        f"{callback_query.message.text.split('Next turn:')[0]}\n{success_msg}\n\nNext turn:{callback_query.message.text.split('Next turn:')[1]}"
-    )
+    try:
+        parts = callback_query.message.text.rsplit('\n\n', 1)
+        new_text = f"{parts[0]}\n{success_msg}\n\n{parts[1]}"
+    except Exception:
+        new_text = f"{callback_query.message.text}\n{success_msg}"
+    await callback_query.message.edit_text(new_text)
     await callback_query.answer(get_string(lang, "UPGRADED_PROPERTY").format(level=new_level), show_alert=True)
