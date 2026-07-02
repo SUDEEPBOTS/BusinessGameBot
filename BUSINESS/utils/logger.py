@@ -1,6 +1,6 @@
 from pyrogram.types import Message
 from BUSINESS.core.bot import app
-from BUSINESS import config
+import config
 
 async def play_logs(message: Message, command: str):
     """

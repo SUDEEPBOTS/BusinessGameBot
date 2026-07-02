@@ -1,7 +1,7 @@
 from pyrogram import filters
 from pyrogram.types import Message
 from BUSINESS.core.bot import app
-from BUSINESS import config
+import config
 
 @app.on_message(filters.command("addsudo") & filters.user(config.OWNER_ID))
 async def addsudo_command(client, message: Message):

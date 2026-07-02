@@ -3,7 +3,7 @@ from pyrogram.types import InlineQueryResultArticle, InputTextMessageContent, In
 from BUSINESS.core.bot import app
 from BUSINESS.utils.fonts import button_font
 from BUSINESS.utils.language import get_string
-from BUSINESS import config
+import config
 
 @app.on_inline_query()
 async def inline_query_handler(client, query):

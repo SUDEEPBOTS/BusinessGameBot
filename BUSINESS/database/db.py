@@ -1,5 +1,5 @@
 from motor.motor_asyncio import AsyncIOMotorClient
-from BUSINESS import config
+import config
 import logging
 
 logger = logging.getLogger(__name__)

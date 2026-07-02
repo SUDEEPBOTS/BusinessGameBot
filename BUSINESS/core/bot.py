@@ -1,6 +1,6 @@
 import logging
 from pyrogram import Client, __version__
-from BUSINESS import config
+import config
 from BUSINESS.core import monkeypatch
 
 logging.basicConfig(

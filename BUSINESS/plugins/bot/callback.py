@@ -1,7 +1,7 @@
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from BUSINESS.core.bot import app
-from BUSINESS import config
+import config
 from BUSINESS.utils.fonts import button_font
 from BUSINESS.utils.language import get_string
 import math

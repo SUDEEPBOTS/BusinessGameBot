@@ -1,7 +1,7 @@
 from pyrogram import filters
 from pyrogram.types import Message
 from BUSINESS.core.bot import app
-from BUSINESS import config
+import config
 
 @app.on_message(filters.command("gban") & filters.user(config.SUDOERS))
 async def gban_command(client, message: Message):

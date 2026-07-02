@@ -2,7 +2,7 @@ from aiohttp import web
 import asyncio
 import logging
 import aiohttp
-from BUSINESS import config
+import config
 
 logger = logging.getLogger(__name__)
 
