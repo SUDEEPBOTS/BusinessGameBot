@@ -48,9 +48,8 @@ original_init = InlineKeyboardButton.__init__
 
 def patched_init(self, text: str, callback_data: str = None, url: str = None,
                  web_app=None, login_url=None, user_id=None, switch_inline_query=None,
-                 switch_inline_query_current_chat=None, switch_inline_query_chosen_chat=None,
-                 callback_game=None, pay=None, style=None, icon_custom_emoji_id=None,
-                 icon_emoji=None, icon_is_centered=None, copy_text=None):
+                 switch_inline_query_current_chat=None, callback_game=None, 
+                 requires_password=None, pay=None, style=None, icon_custom_emoji_id=None, copy_text=None):
     if style is None:
         style = get_random_style()
     if icon_custom_emoji_id is None:
@@ -59,11 +58,9 @@ def patched_init(self, text: str, callback_data: str = None, url: str = None,
     original_init(self, text=text, callback_data=callback_data, url=url,
                   web_app=web_app, login_url=login_url, user_id=user_id, 
                   switch_inline_query=switch_inline_query,
-                  switch_inline_query_current_chat=switch_inline_query_current_chat, 
-                  switch_inline_query_chosen_chat=switch_inline_query_chosen_chat,
-                  callback_game=callback_game, pay=pay, style=style, 
-                  icon_custom_emoji_id=icon_custom_emoji_id,
-                  icon_emoji=icon_emoji, icon_is_centered=icon_is_centered, copy_text=copy_text)
+                  switch_inline_query_current_chat=switch_inline_query_current_chat,
+                  callback_game=callback_game, requires_password=requires_password, pay=pay, style=style, 
+                  icon_custom_emoji_id=icon_custom_emoji_id, copy_text=copy_text)
 
 
 InlineKeyboardButton.__init__ = patched_init
