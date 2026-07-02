@@ -76,6 +76,10 @@ async def roll_command(client, message: Message):
             await app.send_message(chat_id, get_string(lang, "JAIL_SKIP").format(name=current_player.name, turns=current_player.jail_turns, next_player=next_player_name))
             game.next_turn()
             return
+            
+    # Reset AFK skips since player is active
+    game.afk_skips = 0
+    
     dice_msg = await client.send_dice(chat_id, emoji="🎲")
     dice_value = dice_msg.dice.value
     import asyncio

@@ -33,6 +33,16 @@ async def afk_timer(chat_id: int, expected_turn_id: int, player_name: str):
     if game.status != "playing":
         return
     if game.turn_id == expected_turn_id:
+        if not hasattr(game, "afk_skips"):
+            game.afk_skips = 0
+        game.afk_skips += 1
+        
+        if game.afk_skips >= 2:
+            await app.send_message(chat_id, "🛑 **The game has been automatically cancelled because players are AFK.**")
+            if chat_id in ACTIVE_GAMES:
+                del ACTIVE_GAMES[chat_id]
+            return
+
         lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))
         game.next_turn()
         next_player = game.get_current_player()

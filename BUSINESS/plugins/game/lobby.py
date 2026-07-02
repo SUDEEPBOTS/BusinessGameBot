@@ -23,6 +23,7 @@ from pyrogram import filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from BUSINESS.core.bot import app
 from BUSINESS.game.core import Game, ACTIVE_GAMES
+from BUSINESS.plugins.partygame.core import ACTIVE_PARTY_GAMES
 from BUSINESS.utils.fonts import button_font
 from BUSINESS.utils.language import get_string
 from BUSINESS.database.db import db
@@ -145,19 +146,24 @@ async def stop_game_command(client, message: Message):
         pass
 
     chat_id = message.chat.id
-    if chat_id not in ACTIVE_GAMES:
+    if chat_id not in ACTIVE_GAMES and chat_id not in ACTIVE_PARTY_GAMES:
         return await app.send_message(message.chat.id, "No active game to stop.")
         
-    game = ACTIVE_GAMES[chat_id]
+    game = ACTIVE_GAMES.get(chat_id) or ACTIVE_PARTY_GAMES.get(chat_id)
     
     # Check if the user is the host or a group admin
     is_host = (len(game.players) > 0 and message.from_user.id == game.players[0].user_id)
     
     member = await client.get_chat_member(chat_id, message.from_user.id)
-    is_admin = member.status in ["creator", "administrator"]
+    status_name = getattr(member.status, "name", str(member.status)).upper()
+    is_admin = status_name in ["OWNER", "ADMINISTRATOR", "CREATOR"]
     
     if not (is_host or is_admin):
         return await app.send_message(message.chat.id, "Only the game host or a group admin can stop the game.")
         
-    del ACTIVE_GAMES[chat_id]
+    if chat_id in ACTIVE_GAMES:
+        del ACTIVE_GAMES[chat_id]
+    if chat_id in ACTIVE_PARTY_GAMES:
+        del ACTIVE_PARTY_GAMES[chat_id]
+        
     await app.send_message(message.chat.id, "🛑 **The game has been manually stopped/cancelled.**")
