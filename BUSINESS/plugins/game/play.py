@@ -41,9 +41,15 @@ async def roll_command(client, message: Message):
     buttons = []
     
     if current_space['type'] == 'property':
-        if current_space['name'] in [p['name'] for p in game.players for p in getattr(p, 'properties', [])]:
-            # Property is owned, pay rent logic here
-            text += "🏠 This property is already owned! (Rent logic coming soon...)"
+        owner = game.get_property_owner(current_player.position)
+        if owner:
+            if owner.user_id == current_player.user_id:
+                text += "🏠 You already own this property!"
+            else:
+                rent = current_space['rent']
+                current_player.balance -= rent
+                owner.balance += rent
+                text += f"🏠 Owned by {owner.name}!\n💸 **Paid ${rent} in rent!**"
         else:
             text += f"💵 Price: ${current_space['price']}\n💸 Rent: ${current_space['rent']}"
             buttons.append([InlineKeyboardButton(text=button_font("BUY PROPERTY"), callback_data=f"buy_{current_player.position}")])
@@ -78,3 +84,44 @@ async def board_command(client, message: Message):
         board_text += f"📍 Position: {pos_name}\n\n"
         
     await app.send_message(chat_id, board_text)
+
+@app.on_callback_query(filters.regex(r"^buy_(\d+)$"))
+async def buy_property_callback(client, callback_query):
+    chat_id = callback_query.message.chat.id
+    if chat_id not in ACTIVE_GAMES:
+        return await callback_query.answer("No active game.", show_alert=True)
+        
+    game = ACTIVE_GAMES[chat_id]
+    pos = int(callback_query.matches[0].group(1))
+    
+    # Check if the player clicking is the current player
+    # Actually, the button is attached to the dice roll. Only the person who rolled should be able to buy it.
+    # Since turn might have already changed in roll_command, we need to check if the player is at this position.
+    buyer = None
+    for p in game.players:
+        if p.user_id == callback_query.from_user.id:
+            buyer = p
+            break
+            
+    if not buyer:
+        return await callback_query.answer("You are not in this game!", show_alert=True)
+        
+    if buyer.position != pos:
+        return await callback_query.answer("You are not on this property!", show_alert=True)
+        
+    if game.get_property_owner(pos):
+        return await callback_query.answer("This property is already owned!", show_alert=True)
+        
+    property_data = BOARD_SPACES[pos]
+    price = property_data['price']
+    
+    if buyer.balance < price:
+        return await callback_query.answer("You don't have enough money!", show_alert=True)
+        
+    buyer.balance -= price
+    buyer.properties.append(pos)
+    
+    await callback_query.message.edit_text(
+        f"{callback_query.message.text.split('Next turn:')[0]}\n✅ **{buyer.name} bought {property_data['name']} for ${price}!**\n\nNext turn:{callback_query.message.text.split('Next turn:')[1]}"
+    )
+    await callback_query.answer(f"Successfully bought {property_data['name']}!", show_alert=True)

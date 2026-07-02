@@ -55,4 +55,10 @@ class Game:
     def next_turn(self):
         self.turn_index = (self.turn_index + 1) % len(self.players)
 
+    def get_property_owner(self, position: int) -> Player:
+        for player in self.players:
+            if position in player.properties:
+                return player
+        return None
+
 ACTIVE_GAMES = {} # chat_id -> Game object
