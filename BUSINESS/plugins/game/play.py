@@ -162,10 +162,28 @@ async def roll_command(client, message: Message):
     next_player_name = game.players[(game.turn_index + 1) % len(game.players)].name
     text += get_string(lang, "NEXT_TURN").format(next_player=next_player_name)
     game.next_turn()
+    
+    from BUSINESS.utils.image_gen import generate_roll_image
+    owner_name = None
+    if current_space['type'] == 'property':
+        prop_owner = game.get_property_owner(current_player.position)
+        if prop_owner:
+            owner_name = prop_owner.name
+
+    photo_io = generate_roll_image(
+        player_name=current_player.name,
+        dice_val=dice_value,
+        space_name=current_space['name'],
+        price=current_space.get('price'),
+        rent=current_space.get('rent'),
+        owner=owner_name,
+        balance=current_player.balance
+    )
+    
     if buttons:
-        await app.send_message(chat_id, text, reply_markup=InlineKeyboardMarkup(buttons))
+        await app.send_photo(chat_id, photo=photo_io, caption=text, reply_markup=InlineKeyboardMarkup(buttons))
     else:
-        await app.send_message(chat_id, text)
+        await app.send_photo(chat_id, photo=photo_io, caption=text)
     from BUSINESS.plugins.game.afk import afk_timer
     asyncio.create_task(afk_timer(chat_id, game.turn_id, next_player_name))
 
