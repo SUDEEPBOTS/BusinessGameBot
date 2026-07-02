@@ -7,14 +7,34 @@ START_TEXT: |
   >
   > Click below to explore commands or add me to your group.
 
-HELP_TEXT: |
-  **Game Commands:**
-  /business - Start a new game lobby in the group
+HELP_PAGE_1: |
+  **Help Menu (Page 1: Game Commands)** 🎲
+  
+  /business - Start a new game lobby
   /join - Join the active lobby
   /start_game - Start the game (Admin only)
   /roll - Roll the dice 🎲
   /buy - Buy the current property
   /board - View your properties and balance
+
+HELP_PAGE_2: |
+  **Help Menu (Page 2: Admin Commands)** 🛡️
+  
+  /ban [reply/id] - Ban a user from the group
+  /unban [reply/id] - Unban a user
+  /mute [reply/id] - Mute a user
+  /unmute [reply/id] - Unmute a user
+  /tmute [reply/id] [time] - Temporarily mute a user
+
+HELP_PAGE_3: |
+  **Help Menu (Page 3: Sudo & Tools)** ⚙️
+  
+  /ping - Check bot latency
+  /stats - Check server usage
+  /gban [reply/id] - Global ban a user across all groups (Sudo)
+  /ungban [reply/id] - Remove global ban (Sudo)
+  /addsudo [reply] - Add a sudo user
+  /rmsudo [reply] - Remove a sudo user
 
 INLINE_HELP_DESC: "Click here to see how to start playing the International Business Game!"
 INLINE_HELP_TITLE: "Business Game Bot Help"
