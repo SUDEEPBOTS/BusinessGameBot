@@ -4,6 +4,7 @@ from BUSINESS.core.bot import app
 from BUSINESS.game.core import Game, ACTIVE_GAMES
 from BUSINESS.utils.fonts import button_font
 from BUSINESS.utils.language import get_string
+from BUSINESS.database.db import db
 
 @app.on_message(filters.command("business") & filters.group)
 async def create_lobby(client, message: Message):
@@ -16,6 +17,9 @@ async def create_lobby(client, message: Message):
     game = Game(chat_id)
     game.add_player(message.from_user.id, message.from_user.first_name)
     ACTIVE_GAMES[chat_id] = game
+    
+    if db:
+        await db.get_user(message.from_user.id, message.from_user.first_name)
     
     text = get_string(lang, "LOBBY_CREATED").format(
         host=message.from_user.mention,
@@ -44,6 +48,8 @@ async def join_command(client, message: Message):
             
     success = game.add_player(message.from_user.id, message.from_user.first_name)
     if success:
+        if db:
+            await db.get_user(message.from_user.id, message.from_user.first_name)
         await app.send_message(chat_id, get_string(lang, "PLAYER_JOINED").format(mention=message.from_user.mention, count=len(game.players)))
     else:
         await app.send_message(chat_id, get_string(lang, "LOBBY_FULL"))
@@ -95,6 +101,9 @@ async def join_callback(client, callback_query):
             
     success = game.add_player(callback_query.from_user.id, callback_query.from_user.first_name)
     if success:
+        if db:
+            await db.get_user(callback_query.from_user.id, callback_query.from_user.first_name)
+            
         player_list = "\n".join([f"{i+1}. {p.name}" for i, p in enumerate(game.players)])
         text = get_string(lang, "LOBBY_CREATED").format(
             host=game.players[0].name,

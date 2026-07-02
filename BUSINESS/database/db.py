@@ -11,17 +11,21 @@ class Database:
         self.users = self.db.users
         self.groups = self.db.groups
         
-    async def get_user(self, user_id: int):
+    async def get_user(self, user_id: int, name: str = "Unknown"):
         user = await self.users.find_one({"_id": user_id})
         if not user:
             user = {
                 "_id": user_id,
+                "name": name,
                 "games_played": 0,
                 "games_won": 0,
                 "total_wealth_earned": 0,
                 "bankruptcies": 0
             }
             await self.users.insert_one(user)
+        elif "name" not in user or user["name"] != name:
+            await self.update_user(user_id, name=name)
+            user["name"] = name
         return user
 
     async def update_user(self, user_id: int, **kwargs):

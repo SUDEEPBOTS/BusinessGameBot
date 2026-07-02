@@ -103,3 +103,16 @@ UPGRADED_PROPERTY: "Successfully upgraded to Level {level}!"
 BTN_JOIN_LOBBY: "JOIN LOBBY"
 BTN_BUY_PROPERTY: "BUY PROPERTY"
 BTN_UPGRADE_PROPERTY: "UPGRADE PROPERTY"
+
+# Profile & Leaderboard
+PROFILE_MSG: |
+  👤 **Business Profile: {name}**
+  
+  🎮 Games Played: `{played}`
+  🏆 Games Won: `{won}`
+  💰 Total Wealth Earned: `${wealth}`
+  📉 Bankruptcies: `{bankruptcies}`
+
+LEADERBOARD_TITLE: "🏆 **Global Business Leaderboard (Top 10)** 🏆\n\n"
+LEADERBOARD_ENTRY: "{rank}. **{name}** - 🏆 {won} Wins (${wealth})\n"
+NO_DATA: "No data available yet."
