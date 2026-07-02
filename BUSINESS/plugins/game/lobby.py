@@ -20,6 +20,7 @@ async def create_lobby(client, message: Message):
     
     if db:
         await db.get_user(message.from_user.id, message.from_user.first_name)
+        await db.add_group(chat_id)
     
     text = get_string(lang, "LOBBY_CREATED").format(
         host=message.from_user.mention,

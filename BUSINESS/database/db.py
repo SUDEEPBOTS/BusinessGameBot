@@ -41,6 +41,14 @@ class Database:
             {"$inc": {field: amount}},
             upsert=True
         )
+        
+    async def add_group(self, chat_id: int):
+        if not await self.groups.find_one({"_id": chat_id}):
+            await self.groups.insert_one({"_id": chat_id})
+            
+    async def get_all_groups(self):
+        cursor = self.groups.find({})
+        return [g["_id"] for g in await cursor.to_list(length=None)]
 
 try:
     db = Database(config.MONGO_DB_URI, "BusinessGameBot")
