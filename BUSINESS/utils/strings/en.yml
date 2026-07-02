@@ -1,11 +1,11 @@
 # English Strings for Business Game Bot
 START_TEXT: |
-  **Welcome to the International Business Game!** 🎲🏦
-
-  Buy properties in big countries, collect rent, and become a billionaire!
-  Start a game in your group and conquer the world.
-
-  Click below to explore commands or add me to your group.
+  > **Welcome to the International Business Game!** 🎲🏦
+  >
+  > ||Buy properties in big countries, collect rent, and become a billionaire!||
+  > ||Start a game in your group and conquer the world.||
+  >
+  > Click below to explore commands or add me to your group.
 
 HELP_TEXT: |
   **Game Commands:**

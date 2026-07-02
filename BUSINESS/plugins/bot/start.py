@@ -4,9 +4,11 @@ from BUSINESS.core.bot import app
 from BUSINESS import config
 from BUSINESS.utils.fonts import button_font
 from BUSINESS.utils.language import get_string
+from BUSINESS.utils.logger import play_logs
 
 @app.on_message(filters.command(["start", "help"]))
 async def start_command(client, message: Message):
+    await play_logs(message, "start")
     lang = "en" # We can add DB check for language later
     buttons = [
         [
