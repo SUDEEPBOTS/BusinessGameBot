@@ -3,3 +3,4 @@ motor
 python-dotenv
 apscheduler
 PyYAML
+aiohttp
