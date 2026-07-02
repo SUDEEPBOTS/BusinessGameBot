@@ -10,7 +10,19 @@ BOARD_SPACES = [
     {"id": 6, "name": "Chance", "type": "chance"},
     {"id": 7, "name": "Chandigarh", "type": "property", "price": 2000, "rent": 200},
     {"id": 8, "name": "Jail", "type": "special", "action": "jail"},
-    # We will expand this list up to 30 or 40 tiles based on the physical board
+    {"id": 9, "name": "Paris", "type": "property", "price": 2500, "rent": 250},
+    {"id": 10, "name": "Wealth Tax", "type": "tax", "amount": 300},
+    {"id": 11, "name": "London", "type": "property", "price": 3000, "rent": 300},
+    {"id": 12, "name": "UNO", "type": "chance"}
+]
+
+CHANCE_CARDS = [
+    {"text": "Win a Beauty Contest! Collect $500", "amount": 500},
+    {"text": "Speeding Ticket! Pay $200", "amount": -200},
+    {"text": "Bank Error in your favor! Collect $1000", "amount": 1000},
+    {"text": "Pay hospital bills! Pay $300", "amount": -300},
+    {"text": "Go to Jail! Move directly to Jail.", "action": "jail"},
+    {"text": "Inherit $800!", "amount": 800}
 ]
 
 class Player:
@@ -19,8 +31,9 @@ class Player:
         self.name = name
         self.balance = 5000
         self.position = 0
-        self.properties = []
+        self.properties = {} # position (int) -> upgrade_level (int, 0=base, 1-4=houses, 5=hotel)
         self.in_jail = False
+        self.jail_turns = 0
 
     def roll_dice(self):
         import random
