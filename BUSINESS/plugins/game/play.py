@@ -6,19 +6,20 @@ from BUSINESS.utils.fonts import button_font
 
 @app.on_message(filters.command("roll") & filters.group)
 async def roll_command(client, message: Message):
+    await message.delete()
     chat_id = message.chat.id
     if chat_id not in ACTIVE_GAMES:
-        return await message.reply_text("No active game. Start one with /business")
+        return await app.send_message(chat_id, "No active game. Start one with /business")
         
     game = ACTIVE_GAMES[chat_id]
     
     if game.status != "playing":
-        return await message.reply_text("The game hasn't started yet! Use /start_game.")
+        return await app.send_message(chat_id, "The game hasn't started yet! Use /start_game.")
         
     current_player = game.get_current_player()
     
     if message.from_user.id != current_player.user_id:
-        return await message.reply_text(f"It's not your turn! Waiting for {current_player.name}.")
+        return await app.send_message(chat_id, f"It's not your turn! Waiting for {current_player.name}.")
         
     # Send the dice emoji
     dice_msg = await client.send_dice(chat_id, emoji="🎲")
@@ -56,15 +57,16 @@ async def roll_command(client, message: Message):
     game.next_turn()
     
     if buttons:
-        await message.reply_text(text, reply_markup=InlineKeyboardMarkup(buttons))
+        await app.send_message(chat_id, text, reply_markup=InlineKeyboardMarkup(buttons))
     else:
-        await message.reply_text(text)
+        await app.send_message(chat_id, text)
 
 @app.on_message(filters.command("board") & filters.group)
 async def board_command(client, message: Message):
+    await message.delete()
     chat_id = message.chat.id
     if chat_id not in ACTIVE_GAMES:
-        return await message.reply_text("No active game.")
+        return await app.send_message(chat_id, "No active game.")
         
     game = ACTIVE_GAMES[chat_id]
     
@@ -75,4 +77,4 @@ async def board_command(client, message: Message):
         board_text += f"💵 Balance: ${p.balance}\n"
         board_text += f"📍 Position: {pos_name}\n\n"
         
-    await message.reply_text(board_text)
+    await app.send_message(chat_id, board_text)

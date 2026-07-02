@@ -6,9 +6,10 @@ from BUSINESS.utils.fonts import button_font
 
 @app.on_message(filters.command("business") & filters.group)
 async def create_lobby(client, message: Message):
+    await message.delete()
     chat_id = message.chat.id
     if chat_id in ACTIVE_GAMES:
-        return await message.reply_text("A game or lobby is already active in this group! Use /join to join.")
+        return await app.send_message(chat_id, "A game or lobby is already active in this group! Use /join to join.")
         
     game = Game(chat_id)
     game.add_player(message.from_user.id, message.from_user.first_name)
@@ -24,47 +25,47 @@ async def create_lobby(client, message: Message):
 Type /join to enter the game. Admin/Host can type /start_game when everyone is ready.
 """
     buttons = [[InlineKeyboardButton(text=button_font("JOIN LOBBY"), callback_data="join_game")]]
-    await message.reply_text(text, reply_markup=InlineKeyboardMarkup(buttons))
+    await app.send_message(chat_id, text, reply_markup=InlineKeyboardMarkup(buttons))
 
 @app.on_message(filters.command("join") & filters.group)
 async def join_command(client, message: Message):
+    await message.delete()
     chat_id = message.chat.id
     if chat_id not in ACTIVE_GAMES:
-        return await message.reply_text("There is no active lobby. Use /business to create one.")
+        return await app.send_message(chat_id, "There is no active lobby. Use /business to create one.")
         
     game = ACTIVE_GAMES[chat_id]
     
     if game.status != "waiting":
-        return await message.reply_text("The game has already started!")
+        return await app.send_message(chat_id, "The game has already started!")
         
-    # Check if already in
     for p in game.players:
         if p.user_id == message.from_user.id:
-            return await message.reply_text("You have already joined this game!")
+            return await app.send_message(chat_id, "You have already joined this game!")
             
     success = game.add_player(message.from_user.id, message.from_user.first_name)
     if success:
-        await message.reply_text(f"{message.from_user.mention} joined the game! ({len(game.players)}/6)")
+        await app.send_message(chat_id, f"{message.from_user.mention} joined the game! ({len(game.players)}/6)")
     else:
-        await message.reply_text("The lobby is full! Maximum 6 players allowed.")
+        await app.send_message(chat_id, "The lobby is full! Maximum 6 players allowed.")
 
 @app.on_message(filters.command("start_game") & filters.group)
 async def start_game_command(client, message: Message):
+    await message.delete()
     chat_id = message.chat.id
     if chat_id not in ACTIVE_GAMES:
-        return await message.reply_text("There is no active lobby.")
+        return await app.send_message(chat_id, "There is no active lobby.")
         
     game = ACTIVE_GAMES[chat_id]
     
     if game.status != "waiting":
-        return await message.reply_text("The game is already running.")
+        return await app.send_message(chat_id, "The game is already running.")
         
     if len(game.players) < 2:
-        return await message.reply_text("You need at least 2 players to start the game.")
+        return await app.send_message(chat_id, "You need at least 2 players to start the game.")
         
-    # Only Host or Admin can start. Let's simplify: if it's the host.
     if message.from_user.id != game.players[0].user_id:
-        return await message.reply_text("Only the host who created the lobby can start the game.")
+        return await app.send_message(chat_id, "Only the host who created the lobby can start the game.")
         
     game.status = "playing"
     
@@ -81,7 +82,7 @@ It's {game.players[0].name}'s turn!
 
 Type /roll to throw the dice! 🎲
 """
-    await message.reply_text(start_msg)
+    await app.send_message(chat_id, start_msg)
 
 @app.on_callback_query(filters.regex("^join_game$"))
 async def join_callback(client, callback_query):
