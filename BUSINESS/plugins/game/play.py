@@ -46,22 +46,15 @@ async def handle_bankruptcy(chat_id, game, player, lang):
     return False
 
 @app.on_message(filters.command("roll") & filters.group)
-async def roll_command(client, message: Message):
-    try:
-        await message.delete()
-    except:
-        pass
-
-    await message.delete()
-    chat_id = message.chat.id
-    lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))
+async def process_roll(client, chat_id, user_id):
+    lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(chat_id) if "message" in locals() else (await db.get_group_lang(callback_query.chat_id) if "callback_query" in locals() else "en"))
     if chat_id not in ACTIVE_GAMES:
         return await app.send_message(chat_id, get_string(lang, "NO_ACTIVE_GAME"))
     game = ACTIVE_GAMES[chat_id]
     if game.status != "playing":
         return await app.send_message(chat_id, get_string(lang, "GAME_NOT_STARTED"))
     current_player = game.get_current_player()
-    if message.from_user.id != current_player.user_id:
+    if user_id != current_player.user_id:
         return await app.send_message(chat_id, get_string(lang, "NOT_YOUR_TURN").format(name=current_player.name))
     next_player_name = game.players[(game.turn_index + 1) % len(game.players)].name
     if current_player.in_jail:
@@ -180,6 +173,7 @@ async def roll_command(client, message: Message):
         balance=current_player.balance
     )
     
+    buttons.append([InlineKeyboardButton(text=button_font(get_string(lang, "BTN_ROLL") if hasattr(lang, "BTN_ROLL") else "🎲 Roll Dice"), callback_data="roll_dice")])
     if buttons:
         await app.send_photo(chat_id, photo=photo_io, caption=text, reply_markup=InlineKeyboardMarkup(buttons))
     else:
@@ -187,6 +181,19 @@ async def roll_command(client, message: Message):
     from BUSINESS.plugins.game.afk import afk_timer
     asyncio.create_task(afk_timer(chat_id, game.turn_id, next_player_name))
 
+
+@app.on_message(filters.command("roll") & filters.group)
+async def roll_command(client, message: Message):
+    try:
+        await message.delete()
+    except:
+        pass
+    await process_roll(client, message.chat.id, message.from_user.id)
+
+@app.on_callback_query(filters.regex("^roll_dice$"))
+async def roll_dice_callback(client, callback_query):
+    await callback_query.answer()
+    await process_roll(client, callback_query.message.chat.id, callback_query.from_user.id)
 @app.on_message(filters.command("board") & filters.group)
 async def board_command(client, message: Message):
     try:
