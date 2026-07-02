@@ -1,4 +1,5 @@
 import asyncio
+import BUSINESS.core.monkeypatch # Essential for Kurigram button colors & emojis
 from BUSINESS.core.bot import app
 from BUSINESS import config
 

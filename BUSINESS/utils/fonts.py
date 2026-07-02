@@ -6,3 +6,9 @@ def stylish_font(text: str) -> str:
 
 def button_font(text: str) -> str:
     return f"˹ {stylish_font(text)} ˼"
+
+def spoiler(text: str) -> str:
+    return f"||{text}||"
+
+def bold(text: str) -> str:
+    return f"**{text}**"
