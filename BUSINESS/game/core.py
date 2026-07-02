@@ -54,3 +54,5 @@ class Game:
 
     def next_turn(self):
         self.turn_index = (self.turn_index + 1) % len(self.players)
+
+ACTIVE_GAMES = {} # chat_id -> Game object
