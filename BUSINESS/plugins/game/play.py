@@ -75,9 +75,24 @@ if chat_id not in ACTIVE_GAMES:
     dice_value = dice_msg.dice.value
     import asyncio
     await asyncio.sleep(3)
+    
+    emi_msg = ""
+    if current_player.loan > 0:
+        if current_player.balance < current_player.emi:
+            current_player.balance = -1
+        else:
+            current_player.balance -= current_player.emi
+            current_player.loan -= current_player.emi
+            emi_msg = f"📉 Paid EMI of ${current_player.emi}. Remaining Loan: ${max(0, current_player.loan)}\n"
+            if current_player.loan <= 0:
+                current_player.loan = 0
+                current_player.emi = 0
+
     passed_start = current_player.move(dice_value)
     current_space = BOARD_SPACES[current_player.position]
     text = get_string(lang, "ROLL_MSG").format(name=current_player.name, dice=dice_value, space_name=current_space['name'])
+    text += emi_msg
+
     if passed_start:
         text += get_string(lang, "PASSED_START")
     buttons = []
@@ -129,6 +144,8 @@ if chat_id not in ACTIVE_GAMES:
         current_player.in_jail = True
         current_player.jail_turns = 0
         text += get_string(lang, "GO_TO_JAIL")
+    elif current_space['type'] == 'special' and current_space.get('action') == 'bank':
+        text += "🏦 **Bank:** You can take a loan!\nUse `/loan <amount>` (Max $5000)."
     if current_player.balance < 0:
         is_game_over = await handle_bankruptcy(chat_id, game, current_player, lang)
         if is_game_over:

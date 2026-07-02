@@ -39,7 +39,7 @@ BOARD_SPACES = [
     {"id": 14, "name": "Amritsar", "type": "property", "price": 3000, "rent": 300},
     {"id": 15, "name": "Community Chest", "type": "chance"},
     {"id": 16, "name": "Srinagar", "type": "property", "price": 3200, "rent": 320},
-    {"id": 17, "name": "Club", "type": "special", "action": "nothing"},
+    {"id": 17, "name": "Bank", "type": "special", "action": "bank"},
     {"id": 18, "name": "Agra", "type": "property", "price": 3500, "rent": 350},
     {"id": 19, "name": "Kanpur", "type": "property", "price": 4000, "rent": 400},
     {"id": 20, "name": "Railways", "type": "transport", "price": 2500, "rent": 300},
@@ -78,6 +78,8 @@ class Player:
         self.properties = {} 
         self.in_jail = False
         self.jail_turns = 0
+        self.loan = 0
+        self.emi = 0
 
     def roll_dice(self):
         import random
