@@ -31,6 +31,14 @@ from BUSINESS.utils.logger import play_logs
 @app.on_message(filters.command(["start", "help"]))
 async def start_command(client, message: Message):
     await play_logs(message, "start")
+    
+    if message.chat.id != message.from_user.id:
+        button = [[InlineKeyboardButton(text="Click Here For Help Menu", url=f"https://t.me/{app.me.username}?start=help")]]
+        return await message.reply_text(
+            "Contact me in PM to view the help menu!",
+            reply_markup=InlineKeyboardMarkup(button)
+        )
+        
     lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))
     buttons = [
         [
