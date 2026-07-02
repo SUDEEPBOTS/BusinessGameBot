@@ -50,7 +50,7 @@ async def roll_command(client, message: Message):
     await message.delete()
     chat_id = message.chat.id
     lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))
-if chat_id not in ACTIVE_GAMES:
+    if chat_id not in ACTIVE_GAMES:
         return await app.send_message(chat_id, get_string(lang, "NO_ACTIVE_GAME"))
     game = ACTIVE_GAMES[chat_id]
     if game.status != "playing":
@@ -165,7 +165,7 @@ async def board_command(client, message: Message):
     await message.delete()
     chat_id = message.chat.id
     lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))
-if chat_id not in ACTIVE_GAMES:
+    if chat_id not in ACTIVE_GAMES:
         return await app.send_message(chat_id, get_string(lang, "NO_ACTIVE_GAME"))
     game = ACTIVE_GAMES[chat_id]
     board_text = get_string(lang, "BOARD_TITLE")
@@ -178,7 +178,7 @@ if chat_id not in ACTIVE_GAMES:
 async def buy_property_callback(client, callback_query):
     chat_id = callback_query.message.chat.id
     lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))
-if chat_id not in ACTIVE_GAMES:
+    if chat_id not in ACTIVE_GAMES:
         return await callback_query.answer(get_string(lang, "NO_ACTIVE_GAME"), show_alert=True)
     game = ACTIVE_GAMES[chat_id]
     pos = int(callback_query.matches[0].group(1))
@@ -209,7 +209,7 @@ if chat_id not in ACTIVE_GAMES:
 async def upgrade_property_callback(client, callback_query):
     chat_id = callback_query.message.chat.id
     lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))
-if chat_id not in ACTIVE_GAMES:
+    if chat_id not in ACTIVE_GAMES:
         return await callback_query.answer(get_string(lang, "NO_ACTIVE_GAME"), show_alert=True)
     game = ACTIVE_GAMES[chat_id]
     pos = int(callback_query.matches[0].group(1))

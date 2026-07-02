@@ -32,7 +32,7 @@ from BUSINESS.utils.logger import play_logs
 async def start_command(client, message: Message):
     await play_logs(message, "start")
     lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))
-buttons = [
+    buttons = [
         [
             InlineKeyboardButton(text=button_font(get_string(lang, "BTN_ADD_ME")), url=f"https://t.me/{app.me.username}?startgroup=true"),
         ],

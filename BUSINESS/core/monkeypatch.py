@@ -21,7 +21,7 @@
 
 import random
 from pyrogram.types import InlineKeyboardButton
-from pyrogram.enums import Button
+from pyrogram.enums import ButtonStyle
 
 
 PREMIUM_EMOJIS = [
@@ -35,7 +35,7 @@ PREMIUM_EMOJIS = [
 ]
 
 
-STYLES = [Button.PRIMARY, Button.SUCCESS, Button.DANGER, Button.SECONDARY]
+STYLES = [ButtonStyle.PRIMARY, ButtonStyle.SUCCESS, ButtonStyle.DANGER]
 
 def get_random_style():
     return random.choice(STYLES)

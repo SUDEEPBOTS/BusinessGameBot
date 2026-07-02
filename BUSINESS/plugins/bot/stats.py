@@ -30,7 +30,7 @@ async def profile_command(client, message: Message):
     if not db:
         return await message.reply_text("Database is currently offline.")
     lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))
-target_user = message.from_user
+    target_user = message.from_user
     if message.reply_to_message and message.reply_to_message.from_user:
         target_user = message.reply_to_message.from_user
     user_data = await db.get_user(target_user.id, target_user.first_name)
@@ -48,7 +48,7 @@ async def top_command(client, message: Message):
     if not db:
         return await message.reply_text("Database is currently offline.")
     lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))
-cursor = db.users.find().sort("games_won", -1).limit(10)
+    cursor = db.users.find().sort("games_won", -1).limit(10)
     users = await cursor.to_list(length=10)
     if not users:
         return await message.reply_text(get_string(lang, "NO_DATA"))

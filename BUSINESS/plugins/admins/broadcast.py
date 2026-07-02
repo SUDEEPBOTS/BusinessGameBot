@@ -25,7 +25,7 @@ from pyrogram.types import Message
 from pyrogram.errors import FloodWait
 from BUSINESS.core.bot import app
 from BUSINESS.database.db import db
-from BUSINESS.config import SUDOERS
+from config import SUDOERS
 
 @app.on_message(filters.command(["broadcast", "bcast"]) & filters.user(SUDOERS))
 async def broadcast_command(client, message: Message):

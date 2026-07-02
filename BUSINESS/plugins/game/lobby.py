@@ -32,7 +32,7 @@ async def create_lobby(client, message: Message):
     await message.delete()
     chat_id = message.chat.id
     lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))
-if chat_id in ACTIVE_GAMES:
+    if chat_id in ACTIVE_GAMES:
         return await app.send_message(chat_id, get_string(lang, "LOBBY_ACTIVE"))
     game = Game(chat_id)
     game.add_player(message.from_user.id, message.from_user.first_name)
@@ -53,7 +53,7 @@ async def join_command(client, message: Message):
     await message.delete()
     chat_id = message.chat.id
     lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))
-if chat_id not in ACTIVE_GAMES:
+    if chat_id not in ACTIVE_GAMES:
         return await app.send_message(chat_id, get_string(lang, "NO_LOBBY"))
     game = ACTIVE_GAMES[chat_id]
     if game.status != "waiting":
@@ -77,7 +77,7 @@ async def start_game_command(client, message: Message):
     await message.delete()
     chat_id = message.chat.id
     lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))
-if chat_id not in ACTIVE_GAMES:
+    if chat_id not in ACTIVE_GAMES:
         return await app.send_message(chat_id, get_string(lang, "NO_LOBBY"))
     game = ACTIVE_GAMES[chat_id]
     if game.status != "waiting":
@@ -99,7 +99,7 @@ if chat_id not in ACTIVE_GAMES:
 async def join_callback(client, callback_query):
     chat_id = callback_query.message.chat.id
     lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))
-if chat_id not in ACTIVE_GAMES:
+    if chat_id not in ACTIVE_GAMES:
         return await callback_query.answer(get_string(lang, "NO_LOBBY"), show_alert=True)
     game = ACTIVE_GAMES[chat_id]
     if game.status != "waiting":

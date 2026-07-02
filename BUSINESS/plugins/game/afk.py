@@ -34,7 +34,7 @@ async def afk_timer(chat_id: int, expected_turn_id: int, player_name: str):
         return
     if game.turn_id == expected_turn_id:
         lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))
-game.next_turn()
+        game.next_turn()
         next_player = game.get_current_player()
         if not next_player:
             return
