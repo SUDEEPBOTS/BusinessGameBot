@@ -1,4 +1,4 @@
-# English Strings for Business Game Bot
+
 START_TEXT: |
   > **Welcome to the International Business Game!** 🎲🏦
   >
@@ -56,7 +56,6 @@ BTN_BACK: "BACK"
 BTN_PLAY_NOW: "PLAY NOW"
 BTN_OWNER: "MY MASTER"
 
-# Game Lobby Strings
 LOBBY_ACTIVE: "A game or lobby is already active in this group! Use /join to join."
 LOBBY_CREATED: "🎲 **New Business Game Lobby Created!** 🏦\n\n**Host:** {host}\n**Players ({count}/6):**\n{players}\n\nType /join to enter the game. Admin/Host can type /start_game when everyone is ready."
 NO_LOBBY: "There is no active lobby. Use /business to create one."
@@ -68,7 +67,6 @@ NOT_ENOUGH_PLAYERS: "You need at least 2 players to start the game."
 ONLY_HOST_STARTS: "Only the host who created the lobby can start the game."
 GAME_STARTED: "🚀 **THE GAME HAS STARTED!** 🚀\n\nEach player starts with **$5000**.\nIt's {turn_player}'s turn!\n\n**Players:**\n{players}\n\nType /roll to throw the dice! 🎲"
 
-# Game Play Strings
 NO_ACTIVE_GAME: "No active game. Start one with /business"
 GAME_NOT_STARTED: "The game hasn't started yet! Use /start_game."
 NOT_YOUR_TURN: "It's not your turn! Waiting for {name}."
@@ -88,7 +86,6 @@ NEXT_TURN: "\n\nNext turn: **{next_player}**"
 BOARD_TITLE: "🏦 **Game Status:**\n\n"
 BOARD_PLAYER_STAT: "👤 **{name}**\n💵 Balance: ${balance}\n📍 Position: {pos_name}\n\n"
 
-# Callback Strings
 NOT_IN_GAME: "You are not in this game!"
 NOT_ON_PROPERTY: "You are not on this property!"
 ALREADY_OWNED: "This property is already owned!"
@@ -104,7 +101,6 @@ BTN_JOIN_LOBBY: "JOIN LOBBY"
 BTN_BUY_PROPERTY: "BUY PROPERTY"
 BTN_UPGRADE_PROPERTY: "UPGRADE PROPERTY"
 
-# Profile & Leaderboard
 PROFILE_MSG: |
   👤 **Business Profile: {name}**
   
@@ -117,7 +113,6 @@ LEADERBOARD_TITLE: "🏆 **Global Business Leaderboard (Top 10)** 🏆\n\n"
 LEADERBOARD_ENTRY: "{rank}. **{name}** - 🏆 {won} Wins (${wealth})\n"
 NO_DATA: "No data available yet."
 
-# End Game & Bankruptcy
 PLAYER_BANKRUPT: "💥 **BANKRUPTCY!** 💥\n{name} has gone bankrupt and is eliminated from the game! All their properties have been returned to the bank."
 GAME_OVER: "🎉 **GAME OVER!** 🎉\n\nAll other players went bankrupt!\n🏆 **Winner:** {winner}\n💰 **Final Wealth:** ${wealth}\n\nStats have been updated globally. Use /business to start a new game!"
 AFK_WARNING: "⚠️ **{name}**, you have 60 seconds to /roll or you will be skipped!"

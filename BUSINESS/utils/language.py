@@ -14,8 +14,6 @@ def load_strings():
 load_strings()
 
 def get_string(lang: str, key: str) -> str:
-    # Fallback to english if language or key not found
     if lang not in STRINGS:
         lang = "en"
-    
     return STRINGS[lang].get(key, STRINGS["en"].get(key, f"Missing string: {key}"))

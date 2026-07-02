@@ -13,12 +13,9 @@ MODULES = [
 def get_help_buttons(page: int, lang: str):
     items_per_page = 4
     total_pages = math.ceil(len(MODULES) / items_per_page)
-    
-    # Slice the modules for the current page
     start_idx = page * items_per_page
     end_idx = start_idx + items_per_page
     current_modules = MODULES[start_idx:end_idx]
-    
     buttons = []
     row = []
     for i, mod in enumerate(current_modules):
@@ -26,24 +23,18 @@ def get_help_buttons(page: int, lang: str):
         if len(row) == 2 or i == len(current_modules) - 1:
             buttons.append(row)
             row = []
-            
-    # Pagination buttons
     nav_row = []
     if page > 0:
         nav_row.append(InlineKeyboardButton(text="<<<", callback_data=f"help_page_{page-1}"))
     else:
         nav_row.append(InlineKeyboardButton(text=" ", callback_data="ignore"))
-        
     nav_row.append(InlineKeyboardButton(text=f"{page+1}/{total_pages}", callback_data="ignore"))
-    
     if page < total_pages - 1:
         nav_row.append(InlineKeyboardButton(text=">>>", callback_data=f"help_page_{page+1}"))
     else:
         nav_row.append(InlineKeyboardButton(text=" ", callback_data="ignore"))
-        
     buttons.append(nav_row)
     buttons.append([InlineKeyboardButton(text=button_font(get_string(lang, "BTN_BACK")), callback_data="start_menu")])
-    
     return buttons
 
 @app.on_callback_query(filters.regex(r"^help_menu$"))
@@ -69,13 +60,10 @@ async def help_menu_page(client, callback_query: CallbackQuery):
 async def help_module(client, callback_query: CallbackQuery):
     lang = "en"
     module = callback_query.matches[0].group(1).upper()
-    
-    # We might not have strings for all modules yet, so fallback to a default text if needed
     try:
         text = get_string(lang, f"HELP_{module}")
     except:
         text = f"**{module} Module**\n\nCommands for {module} will be listed here."
-        
     buttons = [
         [
             InlineKeyboardButton(text=button_font(get_string(lang, "BTN_BACK")), callback_data="help_menu")

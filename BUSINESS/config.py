@@ -9,16 +9,16 @@ BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
 MONGO_DB_URI = os.environ.get("MONGO_DB_URI", "mongodb+srv://sudeep:sudeep@cluster0.p1bns.mongodb.net/?retryWrites=true&w=majority")
 OWNER_ID = int(os.environ.get("OWNER_ID", "8742583469"))
 
-# Web Server / Keep-Alive Configuration
+
 RENDER_DEPLOY = os.environ.get("RENDER_DEPLOY", "True").lower() == "true"
 RENDER_EXTERNAL_URL = os.environ.get("RENDER_EXTERNAL_URL", "http://localhost:8080")
 
-# Logging
+
 LOGGER_ID = int(os.environ.get("LOGGER_ID", "-1001234567890"))
 
-# Sudo Users
+
 SUDOERS = [OWNER_ID]
 BANNED_USERS = []
 
-# Styling options
+
 START_IMG_URL = "https://m.media-amazon.com/images/I/61Z-o453tsL._AC_UF1000,1000_QL80_.jpg"

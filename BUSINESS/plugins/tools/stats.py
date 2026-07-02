@@ -9,7 +9,6 @@ async def stats_command(client, message: Message):
     cpu_usage = psutil.cpu_percent(interval=1)
     ram = psutil.virtual_memory()
     ram_usage = ram.percent
-    
     stats_text = f"""
 📊 **Business Game Bot Stats** 📊
 

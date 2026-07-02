@@ -9,7 +9,6 @@ from BUSINESS import config
 async def inline_query_handler(client, query):
     string = query.query.lower()
     lang = "en"
-    
     if string == "" or "help" in string or "start" in string:
         buttons = [
             [
@@ -19,7 +18,6 @@ async def inline_query_handler(client, query):
                 InlineKeyboardButton(text=button_font(get_string(lang, "BTN_SUPPORT")), url="https://t.me/yuki_support"),
             ]
         ]
-        
         answers = [
             InlineQueryResultArticle(
                 title=get_string(lang, "INLINE_HELP_TITLE"),
@@ -29,5 +27,4 @@ async def inline_query_handler(client, query):
                 reply_markup=InlineKeyboardMarkup(buttons)
             )
         ]
-        
         await query.answer(answers, cache_time=10)

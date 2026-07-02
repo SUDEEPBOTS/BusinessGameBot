@@ -10,7 +10,6 @@ class Database:
         self.db = self._client[database_name]
         self.users = self.db.users
         self.groups = self.db.groups
-        
     async def get_user(self, user_id: int, name: str = "Unknown"):
         user = await self.users.find_one({"_id": user_id})
         if not user:
@@ -41,11 +40,9 @@ class Database:
             {"$inc": {field: amount}},
             upsert=True
         )
-        
     async def add_group(self, chat_id: int):
         if not await self.groups.find_one({"_id": chat_id}):
             await self.groups.insert_one({"_id": chat_id})
-            
     async def get_all_groups(self):
         cursor = self.groups.find({})
         return [g["_id"] for g in await cursor.to_list(length=None)]

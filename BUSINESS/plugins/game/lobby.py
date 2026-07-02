@@ -13,15 +13,12 @@ async def create_lobby(client, message: Message):
     lang = "en"
     if chat_id in ACTIVE_GAMES:
         return await app.send_message(chat_id, get_string(lang, "LOBBY_ACTIVE"))
-        
     game = Game(chat_id)
     game.add_player(message.from_user.id, message.from_user.first_name)
     ACTIVE_GAMES[chat_id] = game
-    
     if db:
         await db.get_user(message.from_user.id, message.from_user.first_name)
         await db.add_group(chat_id)
-    
     text = get_string(lang, "LOBBY_CREATED").format(
         host=message.from_user.mention,
         count=1,
@@ -37,16 +34,12 @@ async def join_command(client, message: Message):
     lang = "en"
     if chat_id not in ACTIVE_GAMES:
         return await app.send_message(chat_id, get_string(lang, "NO_LOBBY"))
-        
     game = ACTIVE_GAMES[chat_id]
-    
     if game.status != "waiting":
         return await app.send_message(chat_id, get_string(lang, "GAME_ALREADY_STARTED"))
-        
     for p in game.players:
         if p.user_id == message.from_user.id:
             return await app.send_message(chat_id, get_string(lang, "ALREADY_JOINED"))
-            
     success = game.add_player(message.from_user.id, message.from_user.first_name)
     if success:
         if db:
@@ -65,29 +58,20 @@ async def start_game_command(client, message: Message):
     lang = "en"
     if chat_id not in ACTIVE_GAMES:
         return await app.send_message(chat_id, get_string(lang, "NO_LOBBY"))
-        
     game = ACTIVE_GAMES[chat_id]
-    
     if game.status != "waiting":
         return await app.send_message(chat_id, get_string(lang, "GAME_ALREADY_STARTED"))
-        
     if len(game.players) < 2:
         return await app.send_message(chat_id, get_string(lang, "NOT_ENOUGH_PLAYERS"))
-        
     if message.from_user.id != game.players[0].user_id:
         return await app.send_message(chat_id, get_string(lang, "ONLY_HOST_STARTS"))
-        
     game.status = "playing"
-    
     player_names = "\n".join([f"{i+1}. {p.name}" for i, p in enumerate(game.players)])
-    
     start_msg = get_string(lang, "GAME_STARTED").format(
         turn_player=game.players[0].name,
         players=player_names
     )
     await app.send_message(chat_id, start_msg)
-    
-    # Start AFK Timer for the first player
     asyncio.create_task(afk_timer(chat_id, game.turn_id, game.players[0].name))
 
 @app.on_callback_query(filters.regex("^join_game$"))
@@ -96,21 +80,16 @@ async def join_callback(client, callback_query):
     lang = "en"
     if chat_id not in ACTIVE_GAMES:
         return await callback_query.answer(get_string(lang, "NO_LOBBY"), show_alert=True)
-        
     game = ACTIVE_GAMES[chat_id]
-    
     if game.status != "waiting":
         return await callback_query.answer(get_string(lang, "GAME_ALREADY_STARTED"), show_alert=True)
-        
     for p in game.players:
         if p.user_id == callback_query.from_user.id:
             return await callback_query.answer(get_string(lang, "ALREADY_JOINED"), show_alert=True)
-            
     success = game.add_player(callback_query.from_user.id, callback_query.from_user.first_name)
     if success:
         if db:
             await db.get_user(callback_query.from_user.id, callback_query.from_user.first_name)
-            
         player_list = "\n".join([f"{i+1}. {p.name}" for i, p in enumerate(game.players)])
         text = get_string(lang, "LOBBY_CREATED").format(
             host=game.players[0].name,

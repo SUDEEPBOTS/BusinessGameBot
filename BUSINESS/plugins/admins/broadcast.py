@@ -10,29 +10,23 @@ from BUSINESS.config import SUDOERS
 async def broadcast_command(client, message: Message):
     if not message.reply_to_message:
         return await message.reply_text("Please reply to a message to broadcast it.")
-        
     if not db:
         return await message.reply_text("Database is currently offline.")
-        
     status = await message.reply_text("Starting broadcast...")
     groups = await db.get_all_groups()
-    
     if not groups:
         return await status.edit("No groups registered in database.")
-        
     successful = 0
     failed = 0
-    
     for chat_id in groups:
         try:
             await message.reply_to_message.copy(chat_id)
             successful += 1
-            await asyncio.sleep(0.1) # Prevent FloodWait
+            await asyncio.sleep(0.1) 
         except FloodWait as e:
             await asyncio.sleep(e.value + 1)
             await message.reply_to_message.copy(chat_id)
             successful += 1
         except Exception:
             failed += 1
-            
     await status.edit(f"✅ **Broadcast Completed!**\n\n**Total Groups:** {len(groups)}\n**Successful:** {successful}\n**Failed:** {failed}")

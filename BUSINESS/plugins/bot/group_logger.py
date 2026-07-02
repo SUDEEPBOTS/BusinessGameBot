@@ -8,12 +8,10 @@ async def on_bot_added(client, message: Message):
     try:
         if not config.LOGGER_ID:
             return
-            
         for member in message.new_chat_members:
             if member.id == app.me.id:
                 added_by = message.from_user.mention if message.from_user else "Unknown User"
                 chat = message.chat
-                
                 log_text = f"""
 #NEW_GROUP
 **Business Game Bot added to a group!**
@@ -24,8 +22,6 @@ async def on_bot_added(client, message: Message):
 **Members:** {await app.get_chat_members_count(chat.id)}
 """
                 await app.send_message(config.LOGGER_ID, text=log_text)
-                
-                # Optionally send a welcome message to the group
                 await message.reply_text("Thanks for adding me! Type /business to start a game lobby. 🎲🏦")
     except Exception as e:
         print(f"Error in on_bot_added: {e}")
@@ -35,11 +31,9 @@ async def on_bot_removed(client, message: Message):
     try:
         if not config.LOGGER_ID:
             return
-            
         if message.left_chat_member.id == app.me.id:
             removed_by = message.from_user.mention if message.from_user else "Unknown User"
             chat = message.chat
-            
             log_text = f"""
 #LEFT_GROUP
 **Business Game Bot was removed from a group!**

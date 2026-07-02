@@ -12,14 +12,10 @@ async def check_admin(message: Message) -> bool:
 async def ban_command(client, message: Message):
     if not await check_admin(message):
         return await message.reply_text("You must be an admin to use this command.")
-    
     await play_logs(message, "ban")
-    
     if not message.reply_to_message:
         return await message.reply_text("Reply to a user to ban them.")
-        
     user_id = message.reply_to_message.from_user.id
-    
     try:
         await app.ban_chat_member(message.chat.id, user_id)
         await message.reply_text(f"Successfully banned {message.reply_to_message.from_user.mention}.")
@@ -30,14 +26,10 @@ async def ban_command(client, message: Message):
 async def unban_command(client, message: Message):
     if not await check_admin(message):
         return await message.reply_text("You must be an admin to use this command.")
-        
     await play_logs(message, "unban")
-    
     if not message.reply_to_message:
         return await message.reply_text("Reply to a user to unban them.")
-        
     user_id = message.reply_to_message.from_user.id
-    
     try:
         await app.unban_chat_member(message.chat.id, user_id)
         await message.reply_text(f"Successfully unbanned {message.reply_to_message.from_user.mention}.")

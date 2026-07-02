@@ -1,4 +1,4 @@
-# Core definitions for the Business Game
+
 
 BOARD_SPACES = [
     {"id": 0, "name": "Start", "type": "special", "action": "collect_2000"},
@@ -54,20 +54,19 @@ class Player:
         self.name = name
         self.balance = 5000
         self.position = 0
-        self.properties = {} # position (int) -> upgrade_level (int, 0=base, 1-4=houses, 5=hotel)
+        self.properties = {} 
         self.in_jail = False
         self.jail_turns = 0
 
     def roll_dice(self):
         import random
         return random.randint(1, 6), random.randint(1, 6)
-    
     def move(self, steps: int):
         old_pos = self.position
         self.position = (self.position + steps) % len(BOARD_SPACES)
         if self.position < old_pos:
-            self.balance += 2000 # Passed Start
-            return True # Indicates passed start
+            self.balance += 2000 
+            return True 
         return False
 
 class Game:
@@ -76,8 +75,8 @@ class Game:
         self.players = []
         self.initial_players = []
         self.turn_index = 0
-        self.turn_id = 0 # Incremented each turn, helps cancel old timers
-        self.status = "waiting" # waiting, playing, finished
+        self.turn_id = 0 
+        self.status = "waiting" 
 
     def add_player(self, user_id: int, name: str):
         if len(self.players) < 6 and self.status == "waiting":
@@ -102,4 +101,4 @@ class Game:
                 return player
         return None
 
-ACTIVE_GAMES = {} # chat_id -> Game object
+ACTIVE_GAMES = {} 
