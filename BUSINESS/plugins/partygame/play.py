@@ -32,45 +32,65 @@ async def party_start_cmd(client, message: Message):
     text = f"🎭 **PARTY GAME STARTED!** 🚀\n\nWelcome to the board! Everyone starts with $5000.\nTarget: Reach Box 30!\n\n**{current_player.name}**, it is your turn!\n👉 Go to my DM and send `/proll <1-9>` to move!"
     await message.reply_text(text)
 
-@app.on_message(filters.command(["proll", "partyroll"]) & filters.private)
-async def party_roll_dm(client, message: Message):
+@app.on_message(filters.command(["proll", "partyroll"]))
+async def party_roll_cmd(client, message: Message):
     user_id = message.from_user.id
+    chat_id = message.chat.id
+    is_private = message.chat.id == message.from_user.id
     
-    # Find active game
+    if not is_private:
+        try:
+            await message.delete()
+        except:
+            pass
+            
     active_game = None
-    for chat_id, game in ACTIVE_PARTY_GAMES.items():
-        if game.status == "playing":
-            current_player = game.players[game.turn_index]
-            if current_player.user_id == user_id:
-                active_game = game
-                break
-                
-    if not active_game:
-        return await message.reply_text("It is not your turn in any active Party Game, or you are not in one.")
-        
+    if not is_private:
+        if chat_id in ACTIVE_PARTY_GAMES:
+            game = ACTIVE_PARTY_GAMES[chat_id]
+            if game.status == "playing":
+                current_player = game.players[game.turn_index]
+                if current_player.user_id == user_id:
+                    active_game = game
+                else:
+                    return await app.send_message(chat_id, f"It's not your turn! Waiting for {current_player.name}.")
+            else:
+                return await app.send_message(chat_id, "The game has not started yet!")
+        else:
+            return await app.send_message(chat_id, "No active Party Game in this group.")
+    else:
+        for cid, game in ACTIVE_PARTY_GAMES.items():
+            if game.status == "playing":
+                current_player = game.players[game.turn_index]
+                if current_player.user_id == user_id:
+                    active_game = game
+                    break
+        if not active_game:
+            return await message.reply_text("It is not your turn in any active Party Game, or you are not in one.")
+            
     if len(message.command) < 2:
-        return await message.reply_text("Please provide a number from 1 to 9. Example: `/proll 5`")
+        error_msg = "Please provide a number from 1 to 9. Example: `/proll 5`"
+        if is_private: return await message.reply_text(error_msg)
+        else: return await app.send_message(chat_id, f"{message.from_user.mention}, {error_msg}")
         
     try:
         roll_val = int(message.command[1])
         if roll_val < 1 or roll_val > 9:
-            return await message.reply_text("Please enter a valid number between 1 and 9.")
+            raise ValueError
     except ValueError:
-        return await message.reply_text("Please enter a valid number between 1 and 9.")
+        error_msg = "Please enter a valid number between 1 and 9."
+        if is_private: return await message.reply_text(error_msg)
+        else: return await app.send_message(chat_id, f"{message.from_user.mention}, {error_msg}")
         
     current_player = active_game.players[active_game.turn_index]
-    
-    # Move player
     current_player.pos += roll_val
     
-    # Simple event logic (Phase 2 will expand this)
     event_text = ""
     if current_player.pos >= active_game.board_length:
         current_player.pos = active_game.board_length
         event_text = f"🎉 **{current_player.name} REACHED THE FINISH LINE!**"
         active_game.status = "finished"
     else:
-        # Mini-events for demo
         events = [
             ("Paid EMI", -500),
             ("Found a wallet", 1000),
@@ -86,19 +106,17 @@ async def party_roll_dm(client, message: Message):
         if ev[1] != 0:
             event_text += f"💰 **Balance Change:** {'+' if ev[1] > 0 else ''}{ev[1]} (New Balance: ${current_player.balance})"
             
-    # Send update to group
     group_msg = f"🎲 **{current_player.name} secretly rolled the dice!**\n\n{event_text}"
     
     if active_game.status == "finished":
-        # Determine winner by wealth
         winner = max(active_game.players, key=lambda x: x.balance)
         group_msg += f"\n\n🏆 **GAME OVER!**\nWinner: {winner.name} with ${winner.balance}"
         del ACTIVE_PARTY_GAMES[active_game.chat_id]
     else:
-        # Next turn
         active_game.turn_index = (active_game.turn_index + 1) % len(active_game.players)
         next_player = active_game.players[active_game.turn_index]
-        group_msg += f"\n\n👉 **Next Turn:** {next_player.name} (Please DM me `/proll <1-9>`)"
+        group_msg += f"\n\n👉 **Next Turn:** {next_player.name} (Use `/proll <1-9>` in group or DM)"
         
     await app.send_message(active_game.chat_id, group_msg)
-    await message.reply_text(f"✅ Move sent to the group! You landed on Box {current_player.pos}.")
+    if is_private:
+        await message.reply_text(f"✅ Move sent to the group! You landed on Box {current_player.pos}.")
