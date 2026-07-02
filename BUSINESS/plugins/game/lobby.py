@@ -121,3 +121,23 @@ async def join_callback(client, callback_query):
         await callback_query.answer("Joined successfully!", show_alert=True)
     else:
         await callback_query.answer(get_string(lang, "LOBBY_FULL"), show_alert=True)
+
+@app.on_message(filters.command(["stopgame", "cancelgame"]) & filters.group)
+async def stop_game_command(client, message: Message):
+    chat_id = message.chat.id
+    if chat_id not in ACTIVE_GAMES:
+        return await message.reply_text("No active game to stop.")
+        
+    game = ACTIVE_GAMES[chat_id]
+    
+    # Check if the user is the host or a group admin
+    is_host = (len(game.players) > 0 and message.from_user.id == game.players[0].user_id)
+    
+    member = await client.get_chat_member(chat_id, message.from_user.id)
+    is_admin = member.status in ["creator", "administrator"]
+    
+    if not (is_host or is_admin):
+        return await message.reply_text("Only the game host or a group admin can stop the game.")
+        
+    del ACTIVE_GAMES[chat_id]
+    await message.reply_text("🛑 **The game has been manually stopped/cancelled.**")
