@@ -145,6 +145,9 @@ async def roll_command(client, message: Message):
         await app.send_message(chat_id, text, reply_markup=InlineKeyboardMarkup(buttons))
     else:
         await app.send_message(chat_id, text)
+        
+    from BUSINESS.plugins.game.afk import afk_timer
+    asyncio.create_task(afk_timer(chat_id, game.turn_id, next_player_name))
 
 @app.on_message(filters.command("board") & filters.group)
 async def board_command(client, message: Message):

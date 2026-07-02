@@ -54,6 +54,9 @@ async def join_command(client, message: Message):
     else:
         await app.send_message(chat_id, get_string(lang, "LOBBY_FULL"))
 
+from BUSINESS.plugins.game.afk import afk_timer
+import asyncio
+
 @app.on_message(filters.command("start_game") & filters.group)
 async def start_game_command(client, message: Message):
     await message.delete()
@@ -82,6 +85,9 @@ async def start_game_command(client, message: Message):
         players=player_names
     )
     await app.send_message(chat_id, start_msg)
+    
+    # Start AFK Timer for the first player
+    asyncio.create_task(afk_timer(chat_id, game.turn_id, game.players[0].name))
 
 @app.on_callback_query(filters.regex("^join_game$"))
 async def join_callback(client, callback_query):

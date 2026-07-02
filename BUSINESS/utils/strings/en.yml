@@ -120,3 +120,5 @@ NO_DATA: "No data available yet."
 # End Game & Bankruptcy
 PLAYER_BANKRUPT: "💥 **BANKRUPTCY!** 💥\n{name} has gone bankrupt and is eliminated from the game! All their properties have been returned to the bank."
 GAME_OVER: "🎉 **GAME OVER!** 🎉\n\nAll other players went bankrupt!\n🏆 **Winner:** {winner}\n💰 **Final Wealth:** ${wealth}\n\nStats have been updated globally. Use /business to start a new game!"
+AFK_WARNING: "⚠️ **{name}**, you have 60 seconds to /roll or you will be skipped!"
+AFK_SKIPPED: "💤 **{name} was AFK and their turn has been skipped!**\n\nNext turn: **{next_player}**"

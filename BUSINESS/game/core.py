@@ -53,6 +53,7 @@ class Game:
         self.players = []
         self.initial_players = []
         self.turn_index = 0
+        self.turn_id = 0 # Incremented each turn, helps cancel old timers
         self.status = "waiting" # waiting, playing, finished
 
     def add_player(self, user_id: int, name: str):
@@ -70,6 +71,7 @@ class Game:
 
     def next_turn(self):
         self.turn_index = (self.turn_index + 1) % len(self.players)
+        self.turn_id += 1
 
     def get_property_owner(self, position: int) -> Player:
         for player in self.players:
