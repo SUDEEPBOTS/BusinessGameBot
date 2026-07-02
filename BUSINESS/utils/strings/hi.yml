@@ -1,0 +1,124 @@
+START_TEXT: |
+  > **International Business Game mein aapka swagat hai!** 🎲🏦
+  >
+  > ||Bade shehar kharidein, rent vasool karein, aur arabpati banein!||
+  > ||Apne group me game start karein aur duniya par raaj karein.||
+  >
+  > Commands dekhne ke liye niche click karein.
+
+HELP_MAIN: |
+  **Help Menu** 📚
+  
+  Kisi bhi module ko select karke uske commands dekhein.
+
+HELP_GAME: |
+  **Game Commands** 🎲
+  
+  /business - Naya game lobby banayein
+  /join - Active lobby me join karein
+  /start_game - Game shuru karein (Admin only)
+  /roll - Dice ghumayein 🎲
+  /buy - Property kharidein
+  /board - Apni properties aur balance dekhein
+  /sell - Bank ko property aadhi keemat par bechein
+  /trade - Dusre player ke sath property exchange karein
+
+HELP_ADMIN: |
+  **Admin Commands** 🛡️
+  
+  /ban [reply/id] - User ko ban karein
+  /unban [reply/id] - User ko unban karein
+  /mute [reply/id] - User ko mute karein
+  /unmute [reply/id] - User ko unmute karein
+
+HELP_SUDO: |
+  **Sudo Commands** ⚙️
+  
+  /gban [reply/id] - Global ban karein
+  /ungban [reply/id] - Global ban hatayein
+
+HELP_TOOLS: |
+  **Tools Commands** 🛠️
+  
+  /ping - Bot ki speed check karein
+  /stats - Server usage dekhein
+
+INLINE_HELP_DESC: "Yahan click karke dekhein game kaise khelte hain!"
+INLINE_HELP_TITLE: "Business Game Bot Help"
+
+BTN_ADD_ME: "MUJHE ADD KAREIN"
+BTN_HELP: "HELP"
+BTN_ABOUT: "ABOUT"
+BTN_SUPPORT: "SUPPORT"
+BTN_BACK: "BACK"
+BTN_PLAY_NOW: "KHELNA SHURU KAREIN"
+BTN_OWNER: "MERA MALIK"
+
+LOBBY_ACTIVE: "Is group me pehle se ek game chal raha hai! /join ka use karein."
+LOBBY_CREATED: "🎲 **Naya Business Game Lobby Ban Gaya!** 🏦\n\n**Host:** {host}\n**Players ({count}/6):**\n{players}\n\nGame me aane ke liye /join likhein. Sabke aane ke baad Admin /start_game likh sakta hai."
+NO_LOBBY: "Koi active lobby nahi hai. Naya banane ke liye /business likhein."
+GAME_ALREADY_STARTED: "Game pehle hi shuru ho chuka hai!"
+ALREADY_JOINED: "Aap pehle hi is game me hain!"
+PLAYER_JOINED: "{mention} game me shamil hue! ({count}/6)"
+LOBBY_FULL: "Lobby full ho chuki hai! Maximum 6 log khel sakte hain."
+NOT_ENOUGH_PLAYERS: "Game shuru karne ke liye kam se kam 2 players chahiye."
+ONLY_HOST_STARTS: "Sirf jisne lobby banayi hai wahi game shuru kar sakta hai."
+GAME_STARTED: "🚀 **GAME SHURU HO CHUKA HAI!** 🚀\n\nHar player ko **$5000** mile hain.\nAb {turn_player} ki baari hai!\n\n**Players:**\n{players}\n\nDice ghumane ke liye /roll likhein! 🎲"
+
+NO_ACTIVE_GAME: "Koi active game nahi hai. /business se shuru karein."
+GAME_NOT_STARTED: "Game abhi shuru nahi hua! /start_game likhein."
+NOT_YOUR_TURN: "Ye aapki baari nahi hai! {name} ka wait karein."
+JAIL_FREE: "🚓 **{name}** Jail se riha ho gaye hain!\n\nNext turn: **{next_player}**"
+JAIL_SKIP: "🚓 **{name}** Jail me hain (Turn {turns}/3). Baari skip ki jaa rahi hai!\n\nNext turn: **{next_player}**"
+ROLL_MSG: "🎲 **{name} ne {dice} roll kiya!**\n\nAap aaye hain: **{space_name}**\n"
+PASSED_START: "💰 *Start se guzre! $2000 collect kiye!*\n"
+PROP_OWNED_SELF_MAX: "🏨 Ye property aapki hai aur Hotel tak upgrade ho chuki hai!"
+PROP_OWNED_SELF_UPG: "🏠 Ye property aapki hai (Level {level}).\nUpgrade cost: ${cost}"
+BANKRUPT_MSG: "⚠️ {name} bankrupt ho gaye!\n"
+RENT_PAID: "🏠 Malik: {owner} (Level {level})!\n💸 **Rent ke ${rent} diye gaye!**"
+PROP_UNOWNED: "💵 Price: ${price}\n💸 Base Rent: ${rent}"
+TAX_PAID: "💸 Tax ke ${amount} diye gaye."
+CHANCE_CARD_MSG: "🃏 **CHANCE CARD:**\n*{text}*\n"
+GO_TO_JAIL: "🚓 **JAIL JAO!** Aapko arrest kar liya gaya hai."
+NEXT_TURN: "\n\nNext turn: **{next_player}**"
+BOARD_TITLE: "🏦 **Game Status:**\n\n"
+BOARD_PLAYER_STAT: "👤 **{name}**\n💵 Balance: ${balance}\n📍 Position: {pos_name}\n\n"
+
+NOT_IN_GAME: "Aap is game me nahi hain!"
+NOT_ON_PROPERTY: "Aap is property par nahi hain!"
+ALREADY_OWNED: "Ye property pehle se biki hui hai!"
+NOT_ENOUGH_MONEY: "Aapke paas paise nahi hain!"
+BOUGHT_PROPERTY: "{name} ko successfully kharid liya gaya!"
+BUY_SUCCESS_MSG: "✅ **{name} ne {prop_name} ko ${price} me kharid liya!**"
+DONT_OWN_PROP: "Ye property aapki nahi hai!"
+MAX_LEVEL_REACHED: "Pehle se max level (Hotel) par hai!"
+NOT_ENOUGH_MONEY_UPG: "Upgrade karne ke liye paise kam hain!"
+UPG_SUCCESS_MSG: "✅ **{name} ne {prop_name} ko Level {level} ({type}) me upgrade kiya ${cost} me!**"
+UPGRADED_PROPERTY: "Successfully Level {level} tak upgrade ho gaya!"
+BTN_JOIN_LOBBY: "LOBBY JOIN KAREIN"
+BTN_BUY_PROPERTY: "PROPERTY KHARIDEIN"
+BTN_UPGRADE_PROPERTY: "UPGRADE KAREIN"
+
+PROFILE_MSG: |
+  👤 **Business Profile: {name}**
+  
+  🎮 Games Khele: `{played}`
+  🏆 Games Jeete: `{won}`
+  💰 Total Kamayi: `${wealth}`
+  📉 Bankruptcies: `{bankruptcies}`
+
+LEADERBOARD_TITLE: "🏆 **Global Business Leaderboard (Top 10)** 🏆\n\n"
+LEADERBOARD_ENTRY: "{rank}. **{name}** - 🏆 {won} Jeet (${wealth})\n"
+NO_DATA: "Abhi tak koi data nahi hai."
+
+PLAYER_BANKRUPT: "💥 **BANKRUPTCY!** 💥\n{name} kangal ho gaya aur game se bahar! Unki saari properties bank ko wapas chali gayi hain."
+GAME_OVER: "🎉 **GAME KHTAM!** 🎉\n\nBaaki sab kangal ho gaye!\n🏆 **Winner:** {winner}\n💰 **Final Wealth:** ${wealth}\n\nStats global leaderboard me update ho gaye hain. Naya game khelne ke liye /business likhein!"
+AFK_WARNING: "⚠️ **{name}**, aapke paas /roll karne ke liye 60 seconds hain warna baari skip ho jayegi!"
+AFK_SKIPPED: "💤 **{name} AFK the aur unki baari skip kar di gayi hai!**\n\nNext turn: **{next_player}**"
+
+# Trade Strings
+TRADE_PROPOSAL: "🤝 **TRADE OFFER**\n\n{sender} ne {target} ko trade bheja hai!\n**Offer:** {offer_text}\n\nKripya Accept ya Decline karein."
+BTN_ACCEPT: "ACCEPT ✅"
+BTN_DECLINE: "DECLINE ❌"
+TRADE_ACCEPTED: "✅ **TRADE ACCEPTED!**\n{target} ne {sender} ka offer swikaar kar liya!"
+TRADE_DECLINED: "❌ **TRADE DECLINED!**\n{target} ne {sender} ka offer mana kar diya."

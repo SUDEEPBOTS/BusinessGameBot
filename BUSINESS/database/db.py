@@ -63,10 +63,24 @@ class Database:
         )
     async def add_group(self, chat_id: int):
         if not await self.groups.find_one({"_id": chat_id}):
-            await self.groups.insert_one({"_id": chat_id})
+            await self.groups.insert_one({"_id": chat_id, "lang": "en"})
+            
     async def get_all_groups(self):
         cursor = self.groups.find({})
         return [g["_id"] for g in await cursor.to_list(length=None)]
+        
+    async def get_group_lang(self, chat_id: int) -> str:
+        group = await self.groups.find_one({"_id": chat_id})
+        if group and "lang" in group:
+            return group["lang"]
+        return "en"
+        
+    async def set_group_lang(self, chat_id: int, lang: str):
+        await self.groups.update_one(
+            {"_id": chat_id},
+            {"$set": {"lang": lang}},
+            upsert=True
+        )
 
 try:
     db = Database(config.MONGO_DB_URI, "BusinessGameBot")

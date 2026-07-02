@@ -117,3 +117,9 @@ PLAYER_BANKRUPT: "💥 **BANKRUPTCY!** 💥\n{name} has gone bankrupt and is eli
 GAME_OVER: "🎉 **GAME OVER!** 🎉\n\nAll other players went bankrupt!\n🏆 **Winner:** {winner}\n💰 **Final Wealth:** ${wealth}\n\nStats have been updated globally. Use /business to start a new game!"
 AFK_WARNING: "⚠️ **{name}**, you have 60 seconds to /roll or you will be skipped!"
 AFK_SKIPPED: "💤 **{name} was AFK and their turn has been skipped!**\n\nNext turn: **{next_player}**"
+
+TRADE_PROPOSAL: "🤝 **TRADE OFFER**\n\n{sender} has offered a trade to {target}!\n**Offer:** {offer_text}\n\nPlease Accept or Decline."
+BTN_ACCEPT: "ACCEPT ✅"
+BTN_DECLINE: "DECLINE ❌"
+TRADE_ACCEPTED: "✅ **TRADE ACCEPTED!**\n{target} accepted the offer from {sender}!"
+TRADE_DECLINED: "❌ **TRADE DECLINED!**\n{target} declined the offer from {sender}."

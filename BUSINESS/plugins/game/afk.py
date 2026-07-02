@@ -21,6 +21,7 @@
 
 import asyncio
 from BUSINESS.core.bot import app
+from BUSINESS.database.db import db
 from BUSINESS.game.core import ACTIVE_GAMES
 from BUSINESS.utils.language import get_string
 
@@ -32,8 +33,8 @@ async def afk_timer(chat_id: int, expected_turn_id: int, player_name: str):
     if game.status != "playing":
         return
     if game.turn_id == expected_turn_id:
-        lang = "en"
-        game.next_turn()
+        lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))
+game.next_turn()
         next_player = game.get_current_player()
         if not next_player:
             return

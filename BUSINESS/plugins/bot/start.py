@@ -22,6 +22,7 @@
 from pyrogram import filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from BUSINESS.core.bot import app
+from BUSINESS.database.db import db
 import config
 from BUSINESS.utils.fonts import button_font
 from BUSINESS.utils.language import get_string
@@ -30,8 +31,8 @@ from BUSINESS.utils.logger import play_logs
 @app.on_message(filters.command(["start", "help"]))
 async def start_command(client, message: Message):
     await play_logs(message, "start")
-    lang = "en" 
-    buttons = [
+    lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))
+buttons = [
         [
             InlineKeyboardButton(text=button_font(get_string(lang, "BTN_ADD_ME")), url=f"https://t.me/{app.me.username}?startgroup=true"),
         ],

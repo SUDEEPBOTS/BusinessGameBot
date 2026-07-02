@@ -49,8 +49,8 @@ async def handle_bankruptcy(chat_id, game, player, lang):
 async def roll_command(client, message: Message):
     await message.delete()
     chat_id = message.chat.id
-    lang = "en"
-    if chat_id not in ACTIVE_GAMES:
+    lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))
+if chat_id not in ACTIVE_GAMES:
         return await app.send_message(chat_id, get_string(lang, "NO_ACTIVE_GAME"))
     game = ACTIVE_GAMES[chat_id]
     if game.status != "playing":
@@ -147,8 +147,8 @@ async def roll_command(client, message: Message):
 async def board_command(client, message: Message):
     await message.delete()
     chat_id = message.chat.id
-    lang = "en"
-    if chat_id not in ACTIVE_GAMES:
+    lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))
+if chat_id not in ACTIVE_GAMES:
         return await app.send_message(chat_id, get_string(lang, "NO_ACTIVE_GAME"))
     game = ACTIVE_GAMES[chat_id]
     board_text = get_string(lang, "BOARD_TITLE")
@@ -160,8 +160,8 @@ async def board_command(client, message: Message):
 @app.on_callback_query(filters.regex(r"^buy_(\d+)$"))
 async def buy_property_callback(client, callback_query):
     chat_id = callback_query.message.chat.id
-    lang = "en"
-    if chat_id not in ACTIVE_GAMES:
+    lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))
+if chat_id not in ACTIVE_GAMES:
         return await callback_query.answer(get_string(lang, "NO_ACTIVE_GAME"), show_alert=True)
     game = ACTIVE_GAMES[chat_id]
     pos = int(callback_query.matches[0].group(1))
@@ -191,8 +191,8 @@ async def buy_property_callback(client, callback_query):
 @app.on_callback_query(filters.regex(r"^upg_(\d+)$"))
 async def upgrade_property_callback(client, callback_query):
     chat_id = callback_query.message.chat.id
-    lang = "en"
-    if chat_id not in ACTIVE_GAMES:
+    lang = await db.get_group_lang(chat_id) if "chat_id" in locals() else (await db.get_group_lang(message.chat.id) if "message" in locals() else (await db.get_group_lang(callback_query.message.chat.id) if "callback_query" in locals() else "en"))
+if chat_id not in ACTIVE_GAMES:
         return await callback_query.answer(get_string(lang, "NO_ACTIVE_GAME"), show_alert=True)
     game = ACTIVE_GAMES[chat_id]
     pos = int(callback_query.matches[0].group(1))
