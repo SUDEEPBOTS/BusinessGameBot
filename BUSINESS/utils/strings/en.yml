@@ -8,19 +8,29 @@ START_TEXT: |
   > Click below to explore commands or add me to your group.
 
 HELP_MAIN: |
-  **Help Menu** 📚
+  **𞋯𝆭 𝙷 𝙴 𝙻 𝙿  𝙼 𝙴 𝙽 𝚄  ˼𞋯𝆭📚**
   
-  Select a module below to view its commands.
+  s ᴇ ʟ ᴇ ᴄ ᴛ  ᴀ  ᴍ ᴏ ᴅ ᴜ ʟ ᴇ  ʙ ᴇ ʟ ᴏ ᴡ  ᴛ ᴏ  ᴠ ɪ ᴇ ᴡ  ɪ ᴛ s  ᴄ ᴏ ᴍ ᴍ ᴀ ɴ ᴅ s.
 
 HELP_GAME: |
   **Game Commands** 🎲
   
   /business - Start a new game lobby
-  /join - Join the active lobby
+  /join - Join an active lobby
   /start_game - Start the game (Admin only)
   /roll - Roll the dice 🎲
-  /buy - Buy the current property
+  /buy - Buy a property
   /board - View your properties and balance
+  /sell - Sell property back to bank (half price)
+  /trade - Exchange property/money with players
+
+HELP_PARTY: |
+  **Party Game Mode** 🎭
+  
+  /party - Start a Mario Party style game!
+  /partyjoin - Join the Party Game
+  /partystart - Start the game
+  *(Rolls are done in Bot DM by sending 1-9)*
 
 HELP_ADMIN: |
   **Admin Commands** 🛡️

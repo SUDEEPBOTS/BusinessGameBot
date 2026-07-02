@@ -7,9 +7,9 @@ START_TEXT: |
   > Commands dekhne ke liye niche click karein.
 
 HELP_MAIN: |
-  **Help Menu** 📚
+  **𞋯𝆭 𝙷 𝙴 𝙻 𝙿  𝙼 𝙴 𝙽 𝚄  ˼𞋯𝆭📚**
   
-  Kisi bhi module ko select karke uske commands dekhein.
+  ᴋ ɪ s ɪ  ʙ ʜ ɪ  ᴍ ᴏ ᴅ ᴜ ʟ ᴇ  ᴋ ᴏ  s ᴇ ʟ ᴇ ᴄ ᴛ  ᴋ ᴀ ʀ ᴋ ᴇ  ᴜ s ᴋ ᴇ  ᴄ ᴏ ᴍ ᴍ ᴀ ɴ ᴅ s  ᴅ ᴇ ᴋ ʜ ᴇ ɪ ɴ.
 
 HELP_GAME: |
   **Game Commands** 🎲
@@ -22,6 +22,14 @@ HELP_GAME: |
   /board - Apni properties aur balance dekhein
   /sell - Bank ko property aadhi keemat par bechein
   /trade - Dusre player ke sath property exchange karein
+
+HELP_PARTY: |
+  **Party Game Mode** 🎭
+  
+  /party - Naya Party Game lobby banayein
+  /partyjoin - Party Game me join karein
+  /partystart - Game shuru karein
+  *(Dice roll Bot ke DM me 1-9 bhejkar hoga!)*
 
 HELP_ADMIN: |
   **Admin Commands** 🛡️
