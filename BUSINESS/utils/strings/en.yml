@@ -1,0 +1,27 @@
+# English Strings for Business Game Bot
+START_TEXT: |
+  **Welcome to the International Business Game!** 🎲🏦
+
+  Buy properties in big countries, collect rent, and become a billionaire!
+  Start a game in your group and conquer the world.
+
+  Click below to explore commands or add me to your group.
+
+HELP_TEXT: |
+  **Game Commands:**
+  /business - Start a new game lobby in the group
+  /join - Join the active lobby
+  /start_game - Start the game (Admin only)
+  /roll - Roll the dice 🎲
+  /buy - Buy the current property
+  /board - View your properties and balance
+
+INLINE_HELP_DESC: "Click here to see how to start playing the International Business Game!"
+INLINE_HELP_TITLE: "Business Game Bot Help"
+
+BTN_ADD_ME: "ADD ME"
+BTN_HELP: "HELP"
+BTN_ABOUT: "ABOUT"
+BTN_SUPPORT: "SUPPORT"
+BTN_BACK: "BACK"
+BTN_PLAY_NOW: "PLAY NOW"

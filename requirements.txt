@@ -2,3 +2,4 @@ Kurigram
 motor
 python-dotenv
 apscheduler
+PyYAML
