@@ -4,7 +4,31 @@ from BUSINESS.core.bot import app
 from BUSINESS.game.core import ACTIVE_GAMES, BOARD_SPACES, CHANCE_CARDS
 from BUSINESS.utils.fonts import button_font
 from BUSINESS.utils.language import get_string
+from BUSINESS.database.db import db
 import random
+
+async def handle_bankruptcy(chat_id, game, player, lang):
+    if db:
+        await db.inc_user_stats(player.user_id, "bankruptcies", 1)
+        
+    game.players.remove(player)
+    await app.send_message(chat_id, get_string(lang, "PLAYER_BANKRUPT").format(name=player.name))
+    
+    # Check win condition
+    if len(game.players) == 1:
+        winner = game.players[0]
+        if db:
+            await db.inc_user_stats(winner.user_id, "games_won", 1)
+            await db.inc_user_stats(winner.user_id, "total_wealth_earned", winner.balance)
+            
+            # Increment games played for everyone
+            for p in game.initial_players:
+                await db.inc_user_stats(p.user_id, "games_played", 1)
+                
+        await app.send_message(chat_id, get_string(lang, "GAME_OVER").format(winner=winner.name, wealth=winner.balance))
+        del ACTIVE_GAMES[chat_id]
+        return True
+    return False
 
 @app.on_message(filters.command("roll") & filters.group)
 async def roll_command(client, message: Message):
@@ -80,14 +104,23 @@ async def roll_command(client, message: Message):
             buttons.append([InlineKeyboardButton(text=button_font(get_string(lang, "BTN_BUY_PROPERTY")), callback_data=f"buy_{current_player.position}")])
             
     elif current_space['type'] == 'tax':
-        current_player.balance -= current_space['amount']
-        text += get_string(lang, "TAX_PAID").format(amount=current_space['amount'])
+        amount = current_space['amount']
+        if current_player.balance < amount:
+            text += get_string(lang, "BANKRUPT_MSG").format(name=current_player.name)
+            current_player.balance = -1 # mark bankrupt
+        else:
+            current_player.balance -= amount
+            text += get_string(lang, "TAX_PAID").format(amount=amount)
         
     elif current_space['type'] == 'chance':
         card = random.choice(CHANCE_CARDS)
         text += get_string(lang, "CHANCE_CARD_MSG").format(text=card['text'])
         if "amount" in card:
-            current_player.balance += card['amount']
+            if card['amount'] < 0 and current_player.balance < abs(card['amount']):
+                text += get_string(lang, "BANKRUPT_MSG").format(name=current_player.name)
+                current_player.balance = -1
+            else:
+                current_player.balance += card['amount']
         elif "action" in card and card["action"] == "jail":
             current_player.in_jail = True
             current_player.jail_turns = 0
@@ -98,6 +131,12 @@ async def roll_command(client, message: Message):
         current_player.jail_turns = 0
         text += get_string(lang, "GO_TO_JAIL")
         
+    if current_player.balance < 0:
+        is_game_over = await handle_bankruptcy(chat_id, game, current_player, lang)
+        if is_game_over:
+            return
+            
+    next_player_name = game.players[(game.turn_index + 1) % len(game.players)].name
     text += get_string(lang, "NEXT_TURN").format(next_player=next_player_name)
     
     game.next_turn()

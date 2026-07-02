@@ -51,12 +51,15 @@ class Game:
     def __init__(self, chat_id: int):
         self.chat_id = chat_id
         self.players = []
+        self.initial_players = []
         self.turn_index = 0
         self.status = "waiting" # waiting, playing, finished
 
     def add_player(self, user_id: int, name: str):
         if len(self.players) < 6 and self.status == "waiting":
-            self.players.append(Player(user_id, name))
+            p = Player(user_id, name)
+            self.players.append(p)
+            self.initial_players.append(p)
             return True
         return False
 
